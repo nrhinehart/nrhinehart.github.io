@@ -1,0 +1,8 @@
+@misc{shah2021recon,
+      title={RECON: Rapid Exploration for Open-World Navigation with Latent Goal Models}, 
+      author={Dhruv Shah and Benjamin Eysenbach and Gregory Kahn and Nicholas Rhinehart and Sergey Levine},
+      year={2021},
+      eprint={2104.05859},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}

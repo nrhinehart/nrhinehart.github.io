@@ -1,0 +1,7 @@
+@InProceedings{Rhinehart_2017_ICCV,
+author = {Rhinehart, Nicholas and Kitani, Kris M.},
+title = {First-Person Activity Forecasting With Online Inverse Reinforcement Learning},
+booktitle = {The IEEE International Conference on Computer Vision (ICCV)},
+month = {Oct},
+year = {2017}
+}

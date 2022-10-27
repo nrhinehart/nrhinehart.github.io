@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="Description" content="Biography of Nicholas (Nick) Rhinehart.">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  </head>
+  <body>
+Nick Rhinehart is a Postdoctoral Scholar in the Electrical Engineering and Computer Science Department at the University of California, Berkeley, where he works with Sergey Levine. His work focuses on fundamental and applied research in machine learning and computer vision for behavioral forecasting and control in complex environments, with an emphasis on deep learning, imitation learning, reinforcement learning methods. Applications of his work include autonomous vehicles and first-person video. He received a PhD in Robotics from Carnegie Mellon University with Kris Kitani, and BS and BA degrees in Engineering and Computer Science from Swarthmore College. Nick's work has been honored with a Best Paper Award at the ICML 2019 Workshop on AI for Autonomous Driving and a Best Paper Honorable Mention Award at ICCV 2017. His work has been published at a variety of top-tier venues, including ICML, NeurIPS, ICLR, CORL, CVPR, ICCV, ECCV, and ICRA. Nick co-organized a Workshop on Machine Learning in Autonomous Driving at NeurIPS 2019 and NeurIPS 2020, a Workshop on Imitation, Intent, and Interaction at ICML 2019, and a Tutorial on Inverse RL for Computer Vision at CVPR 2018.
+  </body>
+</html>

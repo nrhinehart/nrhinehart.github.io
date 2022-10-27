@@ -1,0 +1,1924 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta name="google-site-verification" content="deAcMQCK1YNAq7eyfENbbQlNJBi02g9QMp-L4mloziQ" />
+    <!-- Some brief info for the search engines. -->
+    <meta name="Description" content="Nicholas (Nick) Rhinehart is a Postdoc at UC Berkeley with research interests in Computer Vision and Machine Learning.">
+    <meta name="viewport" content="width=device-width, maximum-scale=1">
+    <meta name="msvalidate.01" content="410AC7129B215790D73E425001F5D310" />
+    <!-- <link rel="canonical" href="https://people.eecs.berkeley.edu/~nrhinehart/"> -->
+
+    <!-- Google Analytics.  -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-30611327-1', 'auto');
+      ga('send', 'pageview');
+    </script>
+    <!-- End Google Analytics -->
+
+    <!-- Clarity tracking code for https://people.eecs.berkeley.edu/~nrhinehart/ --><script>    (function(c,l,a,r,i,t,y){        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i+"?ref=bwt";        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);    })(window, document, "clarity", "script", "7yqvvfila7");</script>
+    
+    <!-- Force page to reload -->
+    <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0" />
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="expires" content="Tue, 01 Jan 1980 1:00:00 GMT" />
+    <meta http-equiv="pragma" content="no-cache" />
+
+    <!-- A little favicon, for fun. -->
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <!-- <link rel="stylesheet" href="css/bootstrap.min.css" > -->
+    <!-- <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css" media="none" onload="if(media!='all')media='all'"> -->
+    <link rel="stylesheet" href="assets/css/fontawesome.css">
+
+    <!-- TODO I think this can be removed. It's no longer used -->
+    <link rel="stylesheet" href="academicons/css/academicons.min.css"/>
+    
+    <!-- We'll use some jquery things -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <!-- The main styling sheet. This is where most of the magic happens -->
+    <link rel="stylesheet" href="xstyle.css">
+    <!-- Class to hide javascript-only functionality if javascript is disabled, and make all 'noshow' elements show -->
+    <noscript><style> .jsonly { display: none } .noshow {display: inherit!important; position: relative;} </style></noscript>
+    
+
+    <title>Nick Rhinehart, Postdoc, UC Berkeley</title>    
+    <!-- TODO hmmm this is redundant, no? -->
+    <script src="jquery.js"></script>
+
+    <!-- Defines a function to enable smooth scrolling to intra-page hyperlinks -->
+    <script type="text/javascript">
+      $(document).on('click', 'a[href^="#"]', function (event) {
+      var windowHeight = window.innerHeight;
+      $('html, body').animate({
+      scrollTop: $($.attr(this, 'href')).offset().top - (windowHeight / 10)
+      }, 500);
+      });
+    </script>
+
+    <!-- Defines a function to allow for showing and hiding of abss and bibs -->
+    <script type="text/javascript">
+      function toggleInfo(articleid,info) {
+      var entry = document.getElementById(articleid);
+      var abs = document.getElementById('abs_'+articleid);
+      var bib = document.getElementById('bib_'+articleid);
+
+      if (abs && info == 'abstract') {
+      if(abs.className.indexOf('abstract') != -1) {
+      abs.className.indexOf('noshow') == -1? abs.className = 'abstract noshow':abs.className = 'abstract';
+      }
+      } else if (bib && info == 'bib') {
+      if(bib.className.indexOf('bib') != -1) {
+      bib.className.indexOf('noshow') == -1?bib.className = 'bib noshow':bib.className = 'bib';
+      }
+      } else {
+      return;
+      }
+      }
+    </script>
+
+    <!-- Defines a function to allow for showing and hiding of abss and bibs -->
+    <script type="text/javascript">
+      function toggle_vis(id) {
+      var e = document.getElementById(id);
+      if (e.style.display == 'none') {
+      e.style.display = 'inline';
+      document.getElementById("newsmorebutton").getElementsByTagName("a")[0].textContent="Hide older";
+      }
+      else {
+      e.style.display = 'none';
+      document.getElementById("newsmorebutton").getElementsByTagName("a")[0].textContent="Show older";
+      }      
+      }
+    </script>
+
+    <script type="text/javascript">
+      function vis_on(id) {
+      var e = document.getElementById(id);
+      if (e.style.display == 'none') {
+      e.style.display = 'inline';
+      }
+      document.getElementById("newsmorebutton").getElementsByTagName("a")[0].textContent="Hide older";
+      }
+    </script>
+
+    <script type="text/javascript">
+      function vis_off(id) {
+      var e = document.getElementById(id);
+      e.style.display = 'none';
+      document.getElementById("newsmorebutton").getElementsByTagName("a")[0].textContent="Show older";
+      }
+    </script>    
+    
+
+    <!-- Defines a function to show a subset of publications. It hides all publication entries that don't match the classname -->
+    <script type="text/javascript">
+      function showPubByClassName(classname) {
+      var x = document.getElementsByTagName("publication");
+      <!-- var container = document.querySelectorAll("#publications.publication"); -->
+      <!-- var x = container.getElementsByTagName(classname); -->
+        var i;
+        for (i = 0; i < x.length; i++) {
+	   x[i].style.display = x[i].classList.contains(classname) ? "flex" : "none";
+        }
+      }
+			</script>
+
+    <script type="text/javascript">
+      function showAllPubs() {
+      var x = document.getElementsByTagName("publication");
+      var i;
+      for (i = 0; i < x.length; i++) {
+	   x[i].style.display = "flex";
+        }
+      }
+		      </script>    
+
+        <script type="text/javascript">
+	  function showNewsByClassName(classname) {
+          var x = document.getElementsByTagName("news");
+          var i;	  
+          for (i = 0; i < x.length; i++) {
+			  if (x[i].classList.contains(classname)) {
+			  x[i].style.display =  "flex";
+			  }
+			  else {x[i].style.display = "none";}
+			  }
+			  }
+    </script>
+
+
+    <!-- TODO the below scripts are old. Remove them safely. -->
+    <script type="text/javascript">    
+      function toggleDiv(klass) {
+      var x = document.getElementsByClassName(klass);
+      var i;
+      for (i = 0; i < x.length; i++) {
+		      x[i].style.display = x[i].style.display == "none" ? "inline" : "none";
+		      x[i].style.visibility = x[i].style.visibility == "hidden" ? "visible" : "hidden";
+		      }
+		      }
+    </script>
+
+    <script type="text/javascript">
+      function toggleAndLog() {
+      toggleDiv('extrarow');
+      ga('send','event','links','click','profileslink', 0);
+      }      
+
+      function riLog() { ga('send', 'event', 'profile', 'click', 'riprofile', 0); }
+      function scholarLog() { ga('send', 'event', 'profile', 'click', 'scholarprofile', 0); }
+      function linkedinLog() { ga('send', 'event', 'profile', 'click', 'linkedinprofile', 0); }
+      function twitterLog() { ga('send', 'event', 'profile', 'click', 'twitterprofile', 0); }
+      function cvLog() { ga('send', 'event', 'profile', 'click', 'cv', 0); }
+      function emailLog() { ga('send', 'event', 'profile', 'click', 'email', 0); }
+
+      function precogPDFLog() { ga('send', 'event', 'pdf', 'click', 'precogpdf', 0); }
+      function guan19PDFLog() { ga('send', 'event', 'pdf', 'click', 'Guan20pdf', 0); }
+      function dimPDFLog() { ga('send', 'event', 'pdf', 'click', 'DIMpdf', 0); }
+      function darkotpamiPDFLog() { ga('send', 'event', 'pdf', 'click', 'DARKOTPAMIpdf', 0); }
+      function r2p2PDFLog() { ga('send', 'event', 'pdf', 'click', 'R2P2pdf', 0); }
+      function darkoiccvPDFLog() { ga('send', 'event', 'pdf', 'click', 'darkoiccvpdf', 0); }
+      function actionmapsPDFLog() { ga('send', 'event', 'pdf', 'click', 'actionmapspdf', 0); }
+      function vchunkingPDFLog() { ga('send', 'event', 'pdf', 'click', 'vchunkingpdf', 0); }
+    </script>
+
+    <!-- Event listeners -->
+    <!-- <script type="text/javascript"> -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('profileslink').addEventListener("click", toggleAndLog); -->
+      <!-- }); -->
+
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('riprofile').addEventListener("click", riLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('scholarprofile').addEventListener("click", scholarLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('linkedinprofile').addEventListener("click", linkedinLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('twitterprofile').addEventListener("click", twitterLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('cv').addEventListener("click", cvLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('email').addEventListener("click", emailLog); -->
+      <!-- }); -->
+
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('precogpdf').addEventListener("click", precogPDFLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('guan19pdf').addEventListener("click", guan19PDFLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('DIMpdf').addEventListener("click", dimPDFLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('DARKOTPAMIpdf').addEventListener("click", darkotpamiLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('R2P2pdf').addEventListener("click", r2p2PDFLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('darkoiccvpdf').addEventListener("click", darkoiccvPDFLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('actionmapspdf').addEventListener("click", actionmapsPDFLog); -->
+      <!-- }); -->
+      <!-- window.addEventListener("DOMContentLoaded", function(event) { -->
+      <!-- document.getElementById('vchunkingpdf').addEventListener("click", vchunkingPDFLog); -->
+      <!-- }); -->
+    <!-- </script> -->
+  </head>
+
+  <!-- The start of the layout. Rough sketch: -->
+
+  <!-- body: -->
+  <!--           | ------- header ----- | -->
+  <!--    main:  | "bio" contact section| -->
+  <!--           | about section        | -->  
+  <!--           | news section         | -->
+  <!--           | publications section | -->
+  <!--           |   topic filter       | -->
+  <!--           |   pubA               | -->
+  <!--           |   pubB               | -->
+  <body>
+    <div id="container">
+      <header id="header"> 
+	<subheader id="subheader">
+	  <span style="padding: 0 2vw 0 1vw; white-space:nowrap;"><a href="#home" class="headerlink" id="namespan"><strong>Nick Rhinehart</strong></a></span>
+      	  <span style="padding: 0 1vw;"><a href="#home" class="headerlink">Home</a></span>
+      	  <span style="padding: 0 1vw;"><a href="#news" class="headerlink" id="newsheader">News</a></span>
+	  <span style="padding: 0 1vw;" id="workshopsspan"><a href="#news" class="headerlink" id="workshopsheader">Workshops</a></span>	  
+	  <span style="padding: 0 1vw;" id="talksspan"><a href="#news" class="headerlink" id="talksheader">Talks</a></span>
+	  <span style="padding: 0 1vw;" id="honorsspan"><a href="#news" class="headerlink" id="honorsheader">Honors</a></span>
+	  <span style="padding: 0 1vw;" id="careerspan"><a href="#news" class="headerlink" id="careerheader">Career</a></span>
+      	  <span style="padding: 0 1vw;"><a href="#publications" class="headerlink">Publications</a></span>	  
+	</subheader>
+      </header>
+
+      <!-- Start of the primary content of the page. The good stuff. -->
+      <main id="home">
+
+	<!-- The biosection. Picture, contact info, links -->
+	<section id="biosection" >
+	  <span style="display: flex; flex-direction: row; flex-wrap: wrap; align-content: space-around; justify-content: center; gap: 10px 5px;" id="biospan">
+	    <div id="profilephoto" alt="picture of Nick Rhinehart"></div>
+	    <div style="align-self: center" id="summaryblock">
+	    <!-- <p style="font-size: 28px;">Nick Rhinehart</p> -->
+	    <h1><p style="font-size: 20px;">Nick Rhinehart</p>
+	      <p style="font-size: 16px; font-weight: 300;">Postdoctoral Researcher</p><p style="font-size: 16px; font-weight: 300">Berkeley AI Research (BAIR)</p></h1>
+	    <p>
+	      <div><a href="mailto:nrhinehart@berkeley.edu" class="txtlink ">nrhinehart@berkeley.edu</a></div>
+	      <div style="display:flex; flex-wrap:wrap"><div><a href="cv_nick_rhinehart.pdf" class="txtlink " onclick="location.reload()" id="cv"><i class="far fa-file-pdf fa-fw"></i>CV</a>&nbsp;&bull;&nbsp;</div><div><a href="bio.html" class="txtlink" id="biography"><i class="fa fa-align-left fa-fw"></i>Bio</a>&nbsp;&bull;&nbsp;</div><div><a href="https://scholar.google.com/citations?user=xUGZX_MAAAAJ&hl=en" class="txtlink "><i class="ai ai-google-scholar ai-fw"></i>Scholar</a>&nbsp;&bull;&nbsp;</div><div><a href="https://twitter.com/nick_rhinehart" class="txtlink " id="twitter"><i class="fab fa-twitter fa-fw"></i>Twitter</a>&nbsp;&bull;&nbsp;</div><div><a href="http://github.com/nrhinehart" class="txtlink "><i class="fab fa-github fa-fw"></i>Github</a></div></div></p>
+	  </div>
+	  </span>
+	</section>	  
+
+	<!-- The about section that tells a bit about my academic self -->
+	<section id="about">
+	  <sectitle>About me</sectitle>
+	  <p>Welcome to my academic website! I'm a Postdoctoral Scholar working with <a href="https://people.eecs.berkeley.edu/~svlevine/" class="txtlink">Sergey Levine</a> and others within the <a href="https://bair.berkeley.edu/" class="txtlink">UC Berkeley Artificial Intelligence Research</a> lab. I received a Ph.D. in Robotics working with <a class="txtlink" href="https://scholar.google.com/citations?user=yv3sH74AAAAJ&hl=en&oi=ao">Kris Kitani</a> at <a href="http://cmu.edu" class="txtlink">Carnegie Mellon University</a>. I've also worked with <a href="https://scholar.google.com/citations?user=daYjNkAAAAAJ" class="txtlink">Paul Vernaza</a> at <a class="txtlink" href="http://www.nec-labs.com/research-departments/media-analytics/media-analytics-publications">NEC Labs America</a>,  and <a class="txtlink" href="http://www.ri.cmu.edu/person.html?person_id=689" >Drew Bagnell</a> at <a href="https://www.uber.com/info/atg/" class="txtlink">Uber ATG</a> and Carnegie Mellon. I studied CS and Engineering at <a class="txtlink" href="http://swarthmore.edu">Swarthmore College</a>. See <a href="bio.html" class="txtlink">this page</a> for a more formal bio.</p><br>
+
+	  <p><strong>Research goal:</strong> My research aims to build highly capable autonomous systems that learn to accurately forecast sequences of outcomes and reliably use this ability to make good decisions in new situations. I have developed algorithms that (1) learn to forecast behaviors and observations given visual data [<a href="#r2p2" class="txtlink">1</a>, <a href="#precogpub" class="txtlink">2</a>, <a href="#darkopub" class="txtlink">3</a>, <a href="#IC2" class="txtlink">4</a>, <a href="#Guan20" class="txtlink">5</a>, <a href="#Weng20" class="txtlink">6</a>], (2) use their models to plan and control complex behaviors [<a href="#Rhinehart20" class="txtlink">7</a>, <a href="#Filos20" class="txtlink">8</a>, <a href="#HIP" class="txtlink">9</a>, <a href="#Rhinehart21" class="txtlink">10</a>, <a href="#parrotpub" class="txtlink">11</a>], and (3) are effective for control on real systems [<a href="#Shah21" class="txtlink">12</a>, <a href="#Shah20" class="txtlink">13</a>]. You can learn more from my complete list of <a href="#publications" class="txtlink">publications</a>, as well as my <a href="why_forecast.html" class="txtlink">brief thoughts</a> on why learning to forecast is a promising direction for building highly capable autonomous systems. <br><br>
+
+	    <div id="topicsummary">
+	      <div>
+	    <strong>Research fields:</strong>
+	    <ul>
+	      <li>Machine learning</li>
+	      <li>Robotics</li>
+	      <li>Computer vision</li>
+	      <li>Artificial intelligence</li>
+	    </ul>
+	    </div>
+
+	      <div>
+	    <strong>Research topics:</strong>
+	    <ul>
+	      <li>Deep conditional generative models</li>
+	      <li>Motion and video forecasting</li>
+	      <li>Deep imitation learning</li>
+	      <li>Deep reinforcement learning</li>
+	      <li>Intrinsic motivation</li>
+	    </ul>
+	      </div>
+
+	      <div>
+	    <strong>Research applications:</strong>
+	    <ul>
+	      <li>Autonomous navigation</li>
+	      <li>Autonomous exploration</li>
+	      <li>First-person video understanding</li>
+	    </ul>
+	    </div>	      
+	    </div>
+	</section>
+	
+
+	<!-- Update things that people might want to see. It's sort of a mix of a timeline and a CV, but I guess it may be useful to some people.  -->
+	<section id="news">
+	  <sectitle>News <lastmodified>(Last modified: 2022-01.)</lastmodified></sectitle>
+	  <div class="pubtopiclist jsonly">
+	    <ul class="catlink">
+	      <!-- <li style="list-style-type: none; margin-top: 2px; margin-bottom:2px; margin-left: 2px; margin-right: 2px; padding-left:3px; padding-right:3px; padding-top: 3px; padding-bottom: 3px;"></li> -->
+  	      <li class="activecat cat" onclick="showNewsByClassName('news'); vis_off('morenews');" id="alltopicslink">All news</li>
+	      <li class="cat" onclick="showNewsByClassName('workshop'); vis_on('morenews');" id="workshopslink">Workshops</li>
+	      <li class="cat" onclick="showNewsByClassName('talk'); vis_on('morenews');" id="talkslink">Talks</li>
+	      <li class="cat" onclick="showNewsByClassName('honor'); vis_on('morenews');" id="honorslink">Honors</li>
+	      <!-- <li class="cat" onclick="showNewsByClassName('papers'); vis_on('morenews');">Papers</li> -->
+	      <li class="cat" onclick="showNewsByClassName('career'); vis_on('morenews');" id="careerlink">Career</li>
+	    </ul>
+	  </div>
+	  <script>
+	    <!-- Trigger click events for header links -->
+	     $(document).on('click', '#workshopsheader', function() {
+ 	        $("#workshopslink").click();
+	     });
+	    
+	     $(document).on('click', '#talksheader', function() {
+ 	        $("#talkslink").click();
+	     });
+	    
+	     $(document).on('click', '#honorsheader', function() {
+ 	        $("#honorslink").click();
+	    });
+
+	    $(document).on('click', '#careerheader', function() {
+ 	        $("#careerlink").click();
+	     });
+
+	     $(document).on('click', '#newsheader', function() {
+ 	        $("#alltopicslink").click();
+	     });
+	  </script>
+	  
+	  
+	  <!-- <script> -->
+	  <!--   $(".catlink").on('click', 'li', function(e) { -->
+          <!--   $(this).parent().parent().parent().find('li.activecat').removeClass('activecat'); -->
+          <!--   $(this).addClass('activecat'); -->
+	  <!--   }); -->
+	  <!-- </script> -->
+	  
+	  <ul id="newslist" style="font-size: 15px" class="fa-ul">
+	    <news class="news talk">
+	      <li>Jan 2022: Invited Talk, <a href="http://bair.berkeley.edu" class="txtlink">Berkeley AI Research Seminar</a></li>
+	    </news>
+	    <news class="news talk">
+	      <li>Jan 2022: Invited Talk, <a href="http://svl.stanford.edu/" class="txtlink">Stanford Vision and Learning Laboratory</a></li>
+	    </news>
+
+	    
+	    <news class="news workshop">
+	      <li>Dec 2021: I am co-organizing the <a href="https://www.icra2022av.org/%20" class="txtlink">ICRA 2022 Workshop on Fresh Perspectives on the Future of Autonomous Driving</a>
+	      </li>
+	    </news>
+
+	    
+	    <news class="news papers">
+	    <li>Nov 2021: Preprint available: <a href="#HIP" class="txtlink">Hybrid Imitative Planning</a>
+	    </li>
+	    </news>	    
+	    
+	    <news class="news honor">
+	    <li>Oct 2021: I am honored to have received a Top Reviewer Award at NeurIPS 2021
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Sep 2021: Paper at NeurIPS 2021: <a href="#IC2" class="txtlink">IC2</a>
+	    </li>
+	    </news>	    
+
+	    <news class="news honor">
+	      <li>Sep 2021: I am honored that our paper, <a href="#Shah21" class="txtlink">RECON</a>, received an <important>Oral Presentation at CoRL 2021</important>
+	      </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Sep 2021: Paper at CoRL: <a href="#Shah21" class="txtlink">RECON</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news papers">
+	    <li>Jul 2021: Preprint available: <a href="#Fickinger21" class="txtlink">Explore and Control with Adversarial Surprise</a>
+	    </li>
+	    </news>	    
+	    <news class="news workshop">
+	    <li>Jul 2021: I am co-organizing the <a href="https://ml4ad.github.io/" class="txtlink">NeurIPS 2021 Workshop on Machine Learning for Autonomous Driving</a>
+	    </li>
+	    </news>
+	    <news class="news honor">
+	    <li>Jul 2021: I am honored to have received a <a href="https://icml.cc/Conferences/2021/Reviewers" class="txtlink">Top Reviewer Award at ICML 2021</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>May 2021: 2 Papers at ICRA: <a href="#Rhinehart21" class="txtlink">Contingencies From Observations</a> and <a href="#Shah20" class="txtlink">ViNG</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news papers">
+	    <li>May 2021: 3 Papers at ICLR: <a href="#parrotpub" class="txtlink">PARROT</a>, <a href="#smirlpub" class="txtlink">SMiRL</a>, and <a href="#Bharadwaj20" class="txtlink">Conservative Safety Critics</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news talk">
+	      <li>May 2021: Invited Talk, ICRA 2021 Workshop on <a class="txtlink" href="https://motionpredictionicra2021.github.io/">Long-Term Human Motion Prediction</a>	      </li>
+	    </news>
+	    <news class="news papers">
+	    <li>May 2021:  Preprint available: <a href="#Shah21" class="txtlink">RECON</a>
+	    </li>
+	    </news>
+	    <news class="news honor">
+	    <li>Jan 2021: I am honored that two of our papers, <a href="#parrotpub" class="txtlink">PARROT</a> and <a href="#smirlpub" class="txtlink">SMiRL</a>, received <important>Oral Presentations at ICLR 2021</important>
+	    </li>
+	    </news>
+
+	    <!-- The beginning of the 'older news' items. -->
+	    <div id="morenews" style="display:none" class="jsonly">	    
+	      <news class="news talk">
+	    <li>Dec 2020: Invited Talk, <a href="https://www.arlseminar.com/schedule/" class="txtlink">Applied RL Seminar</a>
+	    </li>
+	    </news>	      
+
+	    <news class="news papers">
+	    <li>Nov 2020:  Paper at CoRL: <a href="#Weng20" class="txtlink">SPF<sup>2</sup></a>
+	    </li>
+	    </news>
+	    
+	    <news class="news talk">
+	    <li>Oct 2020: Invited Talk, Uber ATG
+	    </li>
+	    </news>
+	    <news class="news workshop">
+	    <li>Aug 2020: I am co-organizing the <a href="https://ml4ad.github.io/" class="txtlink">NeurIPS 2020 Workshop on Machine Learning for Autonomous Driving</a>
+	    </li>
+	    </news>
+
+	    <news class="news honor">
+	    <li>Jun 2020: I am honored to have secured a <important>$1.125m grant</important> from <a href="https://www.tri.global" class="txtlink">TRI</a> as a co-investigator.
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Jun 2020:  Paper at ICML: <a href="#Filos20" class="txtlink">Can Autonomous Vehicles Identify, Recover from, and Adapt to Distribution Shifts?</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Jun 2020:  Paper at CVPR: <a href="#Guan20" class="txtlink">Generative Hybrid Forecasting</a>
+	    </li>
+	    </news>	    
+
+	    <news class="news honor">
+	    <li>Jun 2020: I am honored that <a class="txtlink" href="#genhybridpub">our paper</a> received an <important>Oral Presentation at CVPR 2020</important>
+	    </li>
+	    </news>
+	    <news class="news talk">
+	    <li>Jun 2020: Keynote Speaker, CVPR 2020 Workshop on <a class="txtlink" href="https://sites.google.com/view/ieeecvf-cvpr2020-precognition/home">Precognition: Seeing through the Future</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>May 2020:  Paper at ICLR: <a href="#Rhinehart20" class="txtlink">Deep Imitative Models</a>
+	    </li>
+	    </news>	    
+	    
+	    <news class="news honor">
+	    <li>Dec 2019: I am honored to have received a <a href="https://neurips.cc/Conferences/2019/Reviewers" class="txtlink">Top Reviewer Award at NeurIPS 2019</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Oct 2019:  Paper at ICCV: <a href="#precogpub" class="txtlink">PRECOG</a>
+	    </li>
+	    </news>	    
+	      
+	    <news class="news talk">
+	    <li>Oct 2019: Invited Talk, Scale AI
+	    </li>
+	    </news>
+	    
+	    <news class="news talk">
+	    <li>Oct 2019: Invited Talk, Tesla
+	    </li>
+	    </news>	    
+	    <news class="news career">
+	    <li>Oct 2019: I started a Postdoc with <a class="txtlink" href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a> at <a class="txtlink" href="https://bair.berkeley.edu/">UC Berkeley BAIR</a>
+	    </li>
+	    </news>
+	    <news class="news talk">
+	    <li>Oct 2019: Invited Talk, ICCV 2019 Workshop on <a class="txtlink" href="http://wad.ai/">Autonomous Driving - Beyond Single-Frame Perception</a>
+	    </li>
+	    </news>
+	    <news class="news honor">
+	      
+	    <li>Oct 2019: I am honored to have received a <a href="https://iccv2019.thecvf.com/best_reviewers" class="txtlink">Top Reviewer Award at ICCV 2019</a>
+	    </li>
+	    </news>
+
+	    <news class="news career">
+	    <li>Sep 2019: I defended my <a class="txtlink" href="https://www.ri.cmu.edu/publications/jointly-forecasting-and-controlling-behavior-by-learning-from-high-dimensional-data/">PhD Thesis</a>
+	    </li>
+	    </news>
+	    <news class="news talk">
+	    <li>Jul 2019: Invited Talk, Argo AI
+	    </li>
+	    </news>	    
+	    <news class="news talk">
+	    <li>Jul 2019: Invited Talk, <a href="https://sites.google.com/site/baylearn2019/schedule" class="txtlink">Baylearn 2019</a>
+	    </li>
+	    </news>	    
+	    <news class="news workshop">
+	    <li>Jul 2019: I am co-organizing the <a href="https://ml4ad.github.io/" class="txtlink">NeurIPS 2019 Workshop on Machine Learning for Autonomous Driving</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news honor">	      
+	    <li>Jun 2019: I am honored that <a class="txtlink" href="#precogpub">PRECOG</a> received the <important>Best Paper Award at the ICML Workshop on AI4AV</important>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>May 2019:   Paper at ICLR: <a href="#Sharma18" class="txtlink">Directed-Info GAIL</a>
+	    </li>
+	    </news>	    
+	    
+	    <news class="news talk">
+	    <li>May 2019: Invited Talk, iSee
+	    </li>
+	    </news>
+	    
+	    <news class="news workshop">
+	    <li>Feb 2019: I am co-organizing the <a href="https://sites.google.com/view/icml-i3" class="txtlink">ICML 2019 Workshop on Imitation, Intent, and Interaction (I3)</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news talk">
+	    <li>Jan 2019: Invited Talk, Zoox
+	    </li>
+	    </news>
+	    
+	    <news class="news talk">
+	    <li>Dec 2018: Contributed Talk, NeurIPS 2018 Workshop on <a class="txtlink" href="https://sites.google.com/view/infer2control-nips2018">Infer2Control</a>
+	    </li>
+	    </news>
+	    <news class="news talk">
+	    <li>Dec 2018: Contributed Talk, NeurIPS 2018 Workshop on <a class="txtlink" href="https://sites.google.com/site/nips2018mlits/schedule">ML for Intelligent Transport Systems</a>
+	    </li>
+	    </news>	    	    
+	    <news class="news talk">
+	    <li>Dec 2018: Invited Talk, ACCV 2018 Workshop on <a class="txtlink" href="http://www.sys.info.hiroshima-cu.ac.jp/aiu2018/index.php?id=program">Attention/Intention Understanding</a>
+	    </li>
+	    </news>
+	    <news class="news talk">
+	    <li>Nov 2018: Invited Talk, Waymo
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Oct 2018:  Paper at CoRL: <a href="#Shankar18" class="txtlink">Learning Neural Parsers</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news papers">
+	    <li>Oct 2018:  Paper in TPAMI: <a href="#Rhinehart18TPAMI" class="txtlink">First-Person Forecasting</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Sep 2018:  Paper at ECCV: <a href="#r2p2" class="txtlink">R2P2</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Jul 2018:  Paper at AAMAS: <a href="#Pan18" class="txtlink">Human-Interative Subgoal Supervision for Efficient IRL</a>
+	    </li>
+	    </news>	    
+
+	    <news class="news talk">
+	    <li>Jun 2018: Invited Talk, UC Berkeley Deep Drive
+	    </li>
+	    </news>
+	    
+	    <news class="news talk">
+	    <li>Jun 2018: Invited Talk (as organizer), CVPR 2018 Tutorial on <a class="txtlink" href="https://www.youtube.com/watch?v=JbNeLiNnvII">Inverse RL for Computer Vision</a>
+	    </li>
+	    </news>	    
+	    <news class="news talk">
+	    <li>Jun 2018: Invited Talk, CVPR 2018 Tutorial on <a class="txtlink" href="http://michaelryoo.com/cvpr2018tutorial/">Human Activity Forecasting </a>
+	    </li>
+	    </news>
+
+	    <news class="news career">
+	    <li>Jun 2018:  I am on a summer internship as a visiting researcher with <a class="txtlink" href="https://people.eecs.berkeley.edu/~svlevine/">Sergey Levine</a> at <a class="txtlink" href="https://bair.berkeley.edu/">UC Berkeley BAIR</a>
+	    </li>
+	    </news>
+
+
+	    <news class="news papers">
+	    <li>May 2018: Paper at ICLR: <a href="#n2n" class="txtlink">N2N Learning</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news workshop">
+	    <li>Apr 2018: I am co-organizing the <a class="txtlink" href="./irl_cvpr18.html">CVPR 2018 Tutorial on Inverse RL for Computer Vision</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news honor">
+	    <li>Apr 2018: I am honored to have <a class="txtlink" href="https://www.cs.cmu.edu/cmlh-fellows_2018">received</a> the <important>Center for Machine Learning and Health Fellowship</important>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Dec 2017: Paper at NeuRIPS: <a href="#psd" class="txtlink">Predictive State Decoders</a>
+	    </li>
+	    </news>
+	    
+	    <news class="news honor">
+	    <li>Oct 2017: I am honored that <a class="txtlink" href="#darkopub">First-Person Forecasting</a> received the <important>Best Paper Honorable Mention at ICCV 2017</important>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Oct 2017:  Paper at ICCV: <a href="#darkopub" class="txtlink">First-Person Forecasting</a>
+	    </li>
+	    </news>
+
+	    <news class="news career">
+	    <li>Jun 2017:  I am on a summer internship as a visiting researcher with <a href="https://scholar.google.com/citations?user=daYjNkAAAAAJ" class="txtlink">Paul Vernaza</a> at <a class="txtlink" href="http://www.nec-labs.com/research-departments/media-analytics/media-analytics-publications">NEC Labs America</a>
+	    </li>
+	    </news>
+
+	    <news class="news papers">
+	    <li>Jun 2016:  Paper at CVPR: <a href="#amaps" class="txtlink">Action Maps of Large Environments</a>
+	    </li>
+	    </news>
+
+	    <news class="news career">
+	    <li>Jun 2016:  I am on a summer internship as a research engineer with <a class="txtlink" href="http://www.ri.cmu.edu/person.html?person_id=689" >Drew Bagnell</a> at <a href="https://www.uber.com/info/atg/" class="txtlink">Uber ATG</a>
+	    </li>
+	    </news>
+	    
+	    
+	    <news class="news papers">
+	    <li>May 2015:  Paper at ICRA: <a href="#chunking" class="txtlink">Visual Chunking</a>
+	    </li>
+	    </news>
+
+	    <news class="news career">
+	    <li>Aug 2014:  I began a Ph.D. in Robotics at <a href="https://cmu.edu" class="txtlink">CMU</a>, working with <a href="https://scholar.google.com/citations?user=yv3sH74AAAAJ" class="txtlink">Kris Kitani</a>
+	    </li>
+	    </news>
+	    
+	    </div><li id="newsmorebutton" class="jsonly"><a href="#news" onclick="javascript:toggle_vis('morenews')" class="txtlink">Show older</a>
+	    </li>
+	  </ul>
+	  <script>
+	    $("#newslist news.papers li").prepend("<i class='far fa-file-pdf fa-fw' style='margin:4px'></i>");
+	    $("#newslist news.career li").prepend("<i class='far fa-user fa-fw' style='margin:4px'></i>");
+	    $("#newslist news.workshop li").prepend("<i class='fa fa-users fa-fw' style='margin:4px'></i>");
+	    $("#newslist news.honor li").prepend("<i class='far fa-star fa-fw' style='margin:4px'></i>");
+	    $("#newslist news.talk li").prepend("<i class='fa fa-chalkboard-teacher fa-fw' style='margin:4px'></i>");
+	  </script>
+	  
+	</section>
+
+	<!-- START OF PUBLICATIONS. -->
+	<section id="publications">
+	  <sectitle>Conference, Journal, and arXiv Publications <lastmodified>(Last modified: 2021-12.)</lastmodified></sectitle>
+
+	  <!-- This topic selector enables users to focus on a subset of publications by topic. -->
+	  <div class="pubtopiclist jsonly" id="pubtopics">
+	    <ul class="catlink">
+	      <!-- <li style="list-style-type: none; margin-top: 2px; margin-bottom:2px; margin-left: 2px; margin-right: 2px; padding-left:3px; padding-right:3px; padding-top: 3px; padding-bottom: 3px;"></li> -->
+  	      <li class="activecat cat" onclick="showAllPubs()">All topics</li>
+	      <li class="cat" onclick="showPubByClassName('forecasting')">Forecasting</li>
+	      <li class="cat" onclick="showPubByClassName('predcont')">Predictive Control</li>
+	      <li class="cat" onclick="showPubByClassName('unsupervised-rl')">Unsupervised RL</li>
+	      <li class="cat" onclick="showPubByClassName('il')">Imitation Learning</li>
+	      <li class="cat" onclick="showPubByClassName('generative')">Generative Models</li>
+	      <li class="cat" onclick="showPubByClassName('rl')">Reinforcement Learning</li>
+	      <li class="cat" onclick="showPubByClassName('av')">Autonomous Driving</li>
+	      <li class="cat" onclick="showPubByClassName('fpv')">First-Person Vision</li>
+	    </ul>
+	  </div>
+	  <!-- Now that all category links have been defined, listen for click events and define class addition and removal -->
+	  <script>
+	    $(".catlink").on('click', 'li', function(e) {
+            $(this).parent().parent().parent().find('li.activecat').removeClass('activecat');
+            $(this).addClass('activecat');
+	    });
+	  </script>
+
+	  <!-- All publications come after this. See the publication template, currently it's at the bottom -->
+	  <publication class="rl predcont unsupervised-rl y2021">
+	    <pubcore>
+	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://sites.google.com/view/ic2/home">
+  		  <!-- Image file location -->
+  		  <img src="img/ic2_gif_demo_compressed.gif" class="pubimg borderimg" alt="short gif of ic2 method">
+  		</a>
+	      </div>
+	      <div class="info" id="IC2">
+  		<!-- Title -->
+  		<ptitle2>Information is Power: Intrinsic Control via Information Capture</ptitle2>
+  		<!-- Author list -->
+  		<p class="author"><strong>N. Rhinehart</strong>, J. Wang, G. Berseth, JD Co-Reyes, D. Hafner, C. Finn, S. Levine<p>
+  		  <a href="https://openreview.net/forum?id=MO76tBOz9RL" class="txtlink pub">NeurIPS 2021</a>&nbsp;&bull;
+  		  <a href="https://arxiv.org/pdf/2112.03899.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  		  <!-- <a href="javascript:toggleInfo('Fickinger21','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  		  <!-- <a href="javascript:toggleInfo('Fickinger21','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/ic2/home" class="txtlink" >project page</a>
+  		  <!-- Any other links-->
+  		  <br><br>
+  		<p>We argue that a compact and general learning objective is to minimize the entropy of the agent's state visitation estimated using a latent state-space model. We instantiate this approach as a deep reinforcement learning agent equipped with a deep variational Bayes filter. We find that our agent learns to discover, represent, and exercise control of dynamic objects in a variety of partially-observed environments sensed with visual observations without extrinsic reward.</p>
+	      </div>
+	    </pubcore>
+	    </publication>
+
+
+	  <!-- All publications come after this. See the publication template, currently it's at the bottom -->
+	  <publication class="y2021 predcont il av">
+	    <pubcore>
+	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://sites.google.com/view/ic2/home">
+  		  <!-- Image file location -->
+  		  <img src="img/hip_fig1.jpg" class="pubimg borderimg" alt="short gif of ic2 method">
+  		</a>
+	      </div>
+	      <div class="info" id="HIP">
+  		<!-- Title -->
+  		<ptitle2>Hybrid Imitative Planning with Geometric and Predictive Costs in Off-road Environments</ptitle2>
+  		<!-- Author list -->
+  		<p class="author">N. Dashora, D. Shin, D. Shah, H. Leopold, D. Fan, A. Agha-Mohammadi, <strong>N. Rhinehart</strong>, S. Levine</p>
+  		  <a href="https://arxiv.org/abs/2111.10948" class="txtlink pub">arXiv 2021</a>&nbsp;&bull;
+  		  <a href="https://arxiv.org/pdf/2111.10948.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  		  <!-- <a href="javascript:toggleInfo('Fickinger21','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  		  <!-- <a href="javascript:toggleInfo('Fickinger21','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/hybrid-imitative-planning/home" class="txtlink" >project page</a>
+  		  <!-- Any other links-->
+  		  <br><br>
+  		<p>Geometric methods for solving open-world off-road navigation tasks provide generalization but can be brittle. Learning-based methods can directly learn collision-free behavior from raw observations, but are difficult to integrate with standard geometry-based pipelines. We design a method comprised of learning and non-learning-based components. The learned component contributes predicted traversability as rewards, while the geometric component contributes obstacle cost information. We show this approach inherits complementary gains from the learned and geometric
+components and significantly outperforms either of them.</p>
+	      </div>
+	    </pubcore>
+	    </publication>
+
+	  
+	  <publication class="rl predcont unsupervised-rl y2021">
+	    <pubcore>
+	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://sites.google.com/view/adversarial-surprise/home">
+  		  <!-- Image file location -->
+  		  <img src="img/as.gif" class="pubimg borderimg" alt="short gif of adversarial surprise method">
+  		</a>
+	      </div>
+	      <div class="info" id="Fickinger21">
+  		<!-- Title -->
+  		<ptitle2>Explore and Control with Adversarial Surprise</ptitle2>
+  		<!-- Author list -->
+  		<p class="author">A. Fickinger*, N. Jaques*, S. Parajuli, M. Chang, <strong>N. Rhinehart</strong>, G. Berseth, S. Russell, S. Levine<p>
+  		  <a href="https://arxiv.org/abs/2107.07394" class="txtlink pub">arXiv 2021</a>&nbsp;&bull;
+  		  <a href="https://arxiv.org/pdf/2107.07394.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  		  <!-- <a href="javascript:toggleInfo('Fickinger21','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  		  <!-- <a href="javascript:toggleInfo('Fickinger21','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/adversarial-surprise/home" class="txtlink" >project page</a>
+  		  <!-- Any other links-->
+  		  <br><br>
+  		<p>We propose an unsupervised RL technique based on an adversarial game which pits two policies against each other to compete over the amount of surprise an RL agent experiences. The method leads to the emergence of complex skills by exhibiting clear phase transitions, and we show theoretically and empirically that our method has the potential to be applied to the exploration of stochastic, partially-observed environments.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Fickinger21" class="abstract noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<p id="abstract_Fickinger21">Reinforcement learning (RL) provides a framework for learning goal-directed policies given user-specified rewards. However, since designing rewards often requires substantial engineering effort, we are interested in the problem of learning without rewards, where agents must discover useful behaviors in the absence of task-specific incentives. Intrinsic motivation is a family of unsupervised RL techniques which develop general objectives for an RL agent to optimize that lead to better exploration or the discovery of skills. In this paper, we propose a new unsupervised RL technique based on an adversarial game which pits two policies against each other to compete over the amount of surprise an RL agent experiences. The policies each take turns controlling the agent. The Explore policy maximizes entropy, putting the agent into surprising or unfamiliar situations. Then, the Control policy takes over and seeks to recover from those situations by minimizing entropy. The game harnesses the power of multi-agent competition to drive the agent to seek out increasingly surprising parts of the environment while learning to gain mastery over them. We show empirically that our method leads to the emergence of complex skills by exhibiting clear phase transitions. Furthermore, we show both theoretically (via a latent state space coverage argument) and empirically that our method has the potential to be applied to the exploration of stochastic, partially-observed environments. We show that Adversarial Surprise learns more complex behaviors, and explores more effectively than competitive baselines, outperforming intrinsic motivation methods based on active inference, novelty-seeking (Random Network Distillation (RND)), and multi-agent unsupervised RL (Asymmetric Self-Play (ASP)) in MiniGrid, Atari and VizDoom environments.</p> -->
+<!-- 	      </div> -->
+	      
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Fickinger21" class="bib noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<pre id="pre_Fickinger21"> -->
+<!-- @article{fickinger2021explore, -->
+<!--   title={Explore and Control with Adversarial Surprise}, -->
+<!--   author={Fickinger, Arnaud and Jaques, Natasha and Parajuli, Samyak and Chang, Michael and Rhinehart, Nicholas and Berseth, Glen and Russell, Stuart and Levine, Sergey}, -->
+<!--   journal={arXiv preprint arXiv:2107.07394}, -->
+<!--   year={2021} -->
+<!-- }  		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+	  
+	  <publication class="rl predcont y2021 unsupervised-rl">
+	    <pubcore>
+	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://sites.google.com/view/recon-robot">
+  		  <!-- Image file location -->
+  		  <img src="img/rss21_shorttalk_teaser.gif" class="pubimg borderimg" alt="short gif of RECON method">
+  		</a>
+	      </div>
+	      <div class="info" id="Shah21">
+  		<!-- Title -->
+  		<ptitle2>RECON: Rapid Exploration for Open-World Navigation with Latent Goal Models</ptitle2>
+  		<!-- Author list -->
+  		<p class="author">D. Shah, B. Eysenbach, <strong>N. Rhinehart</strong>, S. Levine<p>
+		  <important>Oral Presentation (6.5% of submissions)</important><br>					    
+  		  <a href="https://arxiv.org/abs/2104.05859" class="txtlink pub">CoRL 2021</a>&nbsp;&bull;
+  		  <a href="https://arxiv.org/pdf/2104.05859.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  		  <!-- <a href="javascript:toggleInfo('Shah21','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  		  <!-- <a href="javascript:toggleInfo('Shah21','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/recon-robot" class="txtlink" >project page</a>
+  		  <!-- Any other links-->
+  		  <br><br>
+  		<p>We developed a learning-based robotic system that efficiently explores large open-world environments without constructing geometric maps. The key is a latent goal model that forecasts actions and transit times to goals, is robust to variations in the input images, and enables 'imagining' relative goals. The latent goal model is used to continually construct topological maps that the robot can use to quickly travel to specified goals.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Shah21" class="abstract noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<p id="abstract_Shah21">We describe a robotic learning system for autonomous navigation in diverse environments. At the core of our method are two components: (i) a non-parametric map that reflects the connectivity of the environment but does not require geometric reconstruction or localization, and (ii) a latent variable model of distances and actions that enables efficiently constructing and traversing this map. The model is trained on a large dataset of prior experience to predict the expected amount of time and next action needed to transit between the current image and a goal image. Training the model in this way enables it to develop a representation of goals robust to distracting information in the input images, which aids in deploying the system to quickly explore new environments. We demonstrate our method on a mobile ground robot in a range of outdoor navigation scenarios. Our method can learn to reach new goals, specified as images, in a radius of up to 80 meters in just 20 minutes, and reliably revisit these goals in changing environments. We also demonstrate our method's robustness to previously-unseen obstacles and variable weather conditions.	</p> -->
+<!-- 	      </div> -->
+	      
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Shah21" class="bib noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<pre id="pre_Shah21"> -->
+<!-- @misc{shah2021recon, -->
+<!--  title={RECON: Rapid Exploration for Open-World Navigation with Latent Goal Models},  -->
+<!--  author={Dhruv Shah and Benjamin Eysenbach and Gregory Kahn and Nicholas Rhinehart and Sergey Levine}, -->
+<!--  year={2021}, -->
+<!--  eprint={2104.05859}, -->
+<!--  archivePrefix={arXiv}, -->
+<!--  primaryClass={cs.RO} -->
+<!-- }  		</pre> -->
+<!--  	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>	  
+	  
+	  <publication class="y2021 predcont av il generative">
+	    <pubcore>
+  	      <div class="aside">
+  		<!-- Image link destination -->
+  		<!-- <a href="https://arxiv.org/abs/2012.09812"> -->
+  		<!-- Image file location -->
+  		<img src="img/cfo_teaser.jpg" class="pubimg borderimg" alt="decision tree representing CfO method">
+  	      </div>
+  	      <div class="info" id="Rhinehart21">
+  		<!-- Title -->
+  		<ptitle2>Contingencies from Observations: Tractable Contingency Planning with Learned Behavior Models</ptitle2>
+  		<!-- Author list -->
+  		<p class="author"><strong>N. Rhinehart</strong>*, J. He*, C. Packer, M. A. Wright, R. McAllister, J. E. Gonzalez, S. Levine<p>
+  		  <a href="https://arxiv.org/abs/2104.10558" class="txtlink pub">ICRA 2021</a>&nbsp;&bull;
+		  <a href="https://arxiv.org/pdf/2104.10558.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  	    	  <!-- <a href="javascript:toggleInfo('Rhinehart21','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  	    	  <!-- <a href="javascript:toggleInfo('Rhinehart21','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/contingency-planning/home" class="txtlink">project page</a>
+  	    	  <!-- Any other links-->
+		  <br><br>
+		<p>We developed an approach for deep contingency planning by learning from observations. Given a context, the approach plans a policy that achieves high expected return under the uncertainty of the forecasted behavior of other agents. We evaluate our method's closed-loop performance in common driving scenarios constructed in the CARLA simulator, show that our contingency planner solves these scenarios, and show that noncontingent planning approaches cannot.</p>
+	      </div>
+	    </pubcore>
+<!-- 	    <pubaux> -->
+<!--   	      <\!-- abstract data -\-> -->
+<!--   	      <div id="abs_Rhinehart21" class="abstract noshow"> -->
+<!--   	        <hr class="half"> -->
+<!--   	        <p id="abstract_Rhinehart21">Humans have a remarkable ability to make decisions by accurately reasoning about future events, including the future behaviors and states of mind of other agents. Consider driving a car through a busy intersection: it is necessary to reason about the physics of the vehicle, the intentions of other drivers, and their beliefs about your own intentions. If you signal a turn, another driver might yield to you, or if you enter the passing lane, another driver might decelerate to give you room to merge in front. Competent drivers must plan how they can safely react to a variety of potential future behaviors of other agents before they make their next move. This requires contingency planning: explicitly planning a set of conditional actions that depend on the stochastic outcome of future events. Contingency planning outputs a policy that is a function of future timesteps and observations, whereas standard model predictive control-based planning outputs a sequence of future actions, which is equivalent to a policy that is only a function of future timesteps. In this work, we develop a general-purpose contingency planner that is learned end-to-end using high-dimensional scene observations and low-dimensional behavioral observations. We use a conditional autoregressive flow model to create a compact contingency planning space, and show how this model can tractably learn contingencies from behavioral observations. We developed a closed-loop control benchmark of realistic multi-agent scenarios in a driving simulator (CARLA), on which we compare our method to various noncontingent methods that reason about multi-agent future behavior, including several state-of-the-art deep learning-based planning approaches. We illustrate that these noncontingent planning methods fundamentally fail on this benchmark, and find that our deep contingency planning method achieves significantly superior performance.</p> -->
+<!--   	      </div> -->
+
+<!--   	      <\!-- bib data -\-> -->
+<!--   	      <div id="bib_Rhinehart21" class="bib noshow"> -->
+<!--   	        <hr class="half"> -->
+<!--   	        <pre id="pre_Rhinehart21"> -->
+<!-- @inproceedings{rhinehart2021contingencies, -->
+<!--  title={Contingencies from Observations: Tractable Contingency Planning with Learned Behavior Models}, -->
+<!--  author={Nicholas Rhinehart and Jeff He and Charles Packer and Matthew A. Wright and Rowan McAllister and Joseph E. Gonzalez and Sergey Levine}, -->
+<!--  booktitle={International Conference on Robotics and Automation (ICRA)}, -->
+<!--  organization={IEEE}, -->
+<!--  year={2021}, -->
+<!-- }  	        </pre> -->
+<!--   	      </div> -->
+<!-- 	    </pubaux> -->
+  	  </publication>
+
+ 	  <publication class="y2021 unsupervised-rl rl predcont">
+	    <pubcore>
+  	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://arxiv.org/abs/2012.09812">
+  	    	  <!-- Image file location -->
+  	    	  <img src="img/ving_mail.gif" class="pubimg borderimg" alt="gif depicting ViNG method">
+		</a>
+  	      </div>
+  	      <div class="info" id="Shah20">
+  		<!-- Title -->
+  		<ptitle2>ViNG: Learning Open-World Navigation with Visual Goals</ptitle2>
+  		<!-- Author list -->
+  		<p class="author">D. Shah, B. Eysenbach, G. Kahn, <strong>N. Rhinehart</strong>, S. Levine<p>
+  		  <a href="https://arxiv.org/abs/2012.09812" class="txtlink pub">ICRA 2021</a>&nbsp;&bull;
+		  <a href="https://arxiv.org/pdf/2012.09812.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  	    	  <!-- <a href="javascript:toggleInfo('Shah20','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  	    	  <!-- <a href="javascript:toggleInfo('Shah20','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/ving-robot/" class="txtlink">project page</a>
+  	    	  <!-- Any other links-->
+		  <br><br>
+		<p>We developed a graph-based RL approach to enable a robot to navigate real-world environments given diverse, visually-indicated goals.  We instantiate our method on a real outdoor ground robot and show that our system, which we call ViNG, outperforms previously-proposed methods for goal-conditioned reinforcement learning.</p>
+	      </div>
+	    </pubcore>
+<!-- 	    <pubaux> -->
+<!--   	      <\!-- abstract data -\-> -->
+<!--   	      <div id="abs_Shah20" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!--   		<p id="abstract_Shah20">We propose a learning-based navigation system for reaching visually indicated goals and demonstrate this system on a real mobile robot platform. Learning provides an appealing alternative to conventional methods for robotic navigation: instead of reasoning about environments in terms of geometry and maps, learning can enable a robot to learn about navigational affordances, understand what types of obstacles are traversable (e.g., tall grass) or not (e.g., walls), and generalize over patterns in the environment. However, unlike conventional planning algorithms, it is harder to change the goal for a learned policy during deployment. We propose a method for learning to navigate towards a goal image of the desired destination. By combining a learned policy with a topological graph constructed out of previously observed data, our system can determine how to reach this visually indicated goal even in the presence of variable appearance and lighting. Three key insights, waypoint proposal, graph pruning and negative mining, enable our method to learn to navigate in real-world environments using only offline data, a setting where prior methods struggle. We instantiate our method on a real outdoor ground robot and show that our system, which we call ViNG, outperforms previously-proposed methods for goal-conditioned reinforcement learning, including other methods that incorporate reinforcement learning and search. We also study how ViNG generalizes to unseen environments and evaluate its ability to adapt to such an environment with growing experience. Finally, we demonstrate ViNG on a number of real-world applications, such as last-mile delivery and warehouse inspection. We encourage the reader to check out the videos of our experiments and demonstrations at our project website.	    </p> -->
+<!--   	      </div> -->
+	      
+<!--   	      <\!-- bib data -\-> -->
+<!--   	      <div id="bib_Shah20" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!--   		<pre id="pre_Shah20">@misc{shah2020ving, -->
+<!--  title={ViNG: Learning Open-World Navigation with Visual Goals},  -->
+<!--  author={Dhruv Shah and Benjamin Eysenbach and Gregory Kahn and Nicholas Rhinehart and Sergey Levine}, -->
+<!--  year={2020}, -->
+<!--  eprint={2012.09812}, -->
+<!--  archivePrefix={arXiv}, -->
+<!--  primaryClass={cs.RO} -->
+<!-- }</pre> -->
+<!--   	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>	  	  
+	  
+	  <publication class="y2021 rl il predcont repr generative" id="parrotpub">
+	    <pubcore>
+	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://arxiv.org/abs/2011.10024">
+  		  <!-- Image file location -->
+  		  <img src="img/parrot.gif" class="pubimg borderimg" alt="gif depicting PARROT method">
+  		</a>
+	      </div>
+	      <div class="info" id="Singh20">
+  		<!-- Title -->
+  		<ptitle2>Parrot: Data-Driven Behavioral Priors for Reinforcement Learning</ptitle2>
+  		<!-- Author list -->		  
+  		<p class="author">A. Singh*, H. Liu*, G. Zhou, A. Yu, <strong>N. Rhinehart</strong>, S. Levine<p>
+		  <important>Oral Presentation (1.8% of submissions)</important><br>					    
+  		  <a href="https://openreview.net/forum?id=Ysuv-WOFeKR" class="txtlink pub">ICLR 2021</a>&nbsp;&bull;
+		  <a href="https://arxiv.org/abs/2011.10024.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  		  <!-- <a href="javascript:toggleInfo('Singh20','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  		  <!-- <a href="javascript:toggleInfo('Singh20','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/parrot-rl" class="txtlink">project page</a>
+  		  <!-- Any other links-->
+		  <br><br>
+		<p>Whereas RL agents usually explore randomly when faced with a new task, humans tend to explore with structured behavior. We demonstrate a method for learning a behavioral prior that can be used for rapidly learning new tasks without impeding the RL agent's ability to try out novel behaviors.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Singh20" class="abstract noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<p id="abstract_Singh20">Reinforcement learning provides a general framework for flexible decision making and control, but requires extensive data collection for each new task that an agent needs to learn. In other machine learning fields, such as natural language processing or computer vision, pre-training on large, previously collected datasets to bootstrap learning for new tasks has emerged as a powerful paradigm to reduce data requirements when learning a new task. In this paper, we ask the following question: how can we enable similarly useful pre-training for RL agents? We propose a method for pre-training behavioral priors that can capture complex input-output relationships observed in successful trials from a wide range of previously seen tasks, and we show how this learned prior can be used for rapidly learning new tasks without impeding the RL agent's ability to try out novel behaviors. We demonstrate the effectiveness of our approach in challenging robotic manipulation domains involving image observations and sparse reward functions, where our method outperforms prior works by a substantial margin.</p> -->
+<!-- 	      </div> -->
+	      
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Singh20" class="bib noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<pre id="pre_Singh20"> -->
+<!-- @misc{singh2020parrot, -->
+<!--  title={Parrot: Data-Driven Behavioral Priors for Reinforcement Learning},  -->
+<!--  author={Avi Singh and Huihan Liu and Gaoyue Zhou and Albert Yu and Nicholas Rhinehart and Sergey Levine}, -->
+<!--  year={2020}, -->
+<!--  eprint={2011.10024}, -->
+<!--  archivePrefix={arXiv}, -->
+<!--  primaryClass={cs.LG} -->
+<!-- }  		</pre> -->
+<!--  	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>	  
+	  
+	  <publication class="y2020 unsupervised-rl rl repr predcont" id="smirlpub">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="https://arxiv.org/pdf/1912.05510.pdf">
+		  <!-- Image file location -->
+		  <video controls autoplay loop muted class="pubimg borderimg">
+		    <source src="videos/smirl_doom.mov" type="video/mp4">
+		  </video>
+		</a>
+	      </div>
+	      
+	      <div class="info" id="Berseth19">
+		<!-- Title -->
+		<ptitle2>SMiRL: Surprise Minimizing RL in Dynamic Environments</ptitle2>
+		
+		<!-- Author list -->
+		<p class="author">G. Berseth, D. Geng, C. Devin, <strong>N. Rhinehart</strong>, C. Finn, D. Jayaraman, S. Levine</p>
+		<important>Oral Presentation (1.8% of submissions)</important><br>
+		<!-- Contributed talk at NeurIPS 2018 MLITS Workshop (<strong>top 3 of 25 papers</strong>)<br> -->
+		<!-- Contributed talk at NeurIPS 2018 Infer2Control Workshop (<strong>top 6 of 27 papers</strong>)<br> -->
+
+		<!-- Venue -->
+		
+
+		<!-- <p>We aim to combine the benefits of imitation learning and model-based reinforcement learning (MBRL), and propose imitative models: probabilistic predictive models able to plan expert-like trajectories to achieve arbitrary goals. We find this method substantially outperforms both direct imitation and MBRL in a simulated autonomous driving task, and can be learned efficiently from a fixed set of expert demonstrations without additional online data collection. We also show our model can flexibly incorporate user-supplied costs as test-time, can plan to sequences of goals, and can even perform well with imprecise goals, including goals on the wrong side of the road.</p> -->
+		<!-- <div style="height:10px"></div> -->
+		<!-- Abstract, bib expander links -->
+		<a href="https://openreview.net/forum?id=cPZOyoDloxl" class="txtlink pub">ICLR 2021</a>&nbsp;&bull;
+		<a  href="https://arxiv.org/pdf/1912.05510.pdf" class="txtlink" id="SMIRLpdf">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Berseth19','abstract')" class="txtlink" >show abs</a>&nbsp;&bull;  -->
+		<!-- <a href="javascript:toggleInfo('Berseth19','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="https://sites.google.com/view/surpriseminimization" class="txtlink">project page</a>
+		<!-- Any other links -->
+		<!-- <a href="LINK_DEST_GOES_HERE">LINK NAME</a>&nbsp;&bull; -->
+		<br><br>
+		<p>We propose that a search for order amidst chaos might offer a unifying principle for the emergence of useful behaviors in artificial agents, and formalize this idea into an unsupervised reinforcement learning method called surprise minimizing RL (SMiRL). The resulting agents acquire several proactive behaviors to seek and maintain stable states, which include successfully playing Tetris, Doom, and controlling a humanoid to avoid falls, without any task-specific reward supervision.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Berseth19" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Berseth19"> -->
+<!-- 		All living organisms struggle against the forces of nature to carve out a maintainable niche. We propose that such a search for order amidst chaos might offer a unifying principle for the emergence of useful behaviors in artificial agents. We formalize this idea into an unsupervised reinforcement learning method called Surprise Minimizing RL (SMiRL). SMiRL alternates between learning a density model to evaluate the surprise of a stimulus, and improving the policy to seek more predictable stimuli. This process maximizes a lower-bound on the negative entropy of the states, which can be seen as maximizing the agent's ability to maintain order in the environment. The policy seeks out stable and repeatable situations that counteract the environment's prevailing sources of entropy. This might include avoiding other hostile agents, or finding a stable, balanced pose for a bipedal robot in the face of disturbance forces. We demonstrate that our surprise minimizing agents can successfully play Tetris, Doom, control a humanoid to avoid falls, and navigate to escape enemies in a maze without any task-specific reward supervision. We further show that SMiRL can be used together with a standard task rewards to accelerate reward-driven learning.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Berseth19" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Berseth19"> -->
+<!-- @misc{berseth2019smirl, -->
+<!--  title={SMiRL: Surprise Minimizing RL in Dynamic Environments}, -->
+<!--  author={Glen Berseth and Daniel Geng and Coline Devin and Nicholas Rhinehart and Chelsea Finn and Dinesh Jayaraman and Sergey Levine}, -->
+<!--  year={2019}, -->
+<!--  eprint={1912.05510}, -->
+<!--  archivePrefix={arXiv}, -->
+<!--  primaryClass={cs.LG} -->
+<!-- }</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  
+	  <publication class="rl">
+	    <pubcore>
+	      <div class="aside">
+  		<!-- Image link destination -->
+  		<a href="https://arxiv.org/abs/2010.14497">
+  		  <!-- Image file location -->
+  		  <img src="img/csc.gif" class="pubimg borderimg" alt="gif depicting CSC method">
+  		</a>
+  	      </div>
+
+  	      <div class="info" id="Bharadwaj20">
+  		<!-- Title -->
+  		<ptitle2>Conservative Safety Critics for Safe Exploration</ptitle2>
+  		<!-- Author list -->
+  		<p class="author">H. Bharadhwaj, A. Kumar, <strong>N. Rhinehart</strong>, S. Levine, F. Shkurti, A. Garg<p>
+  		  <a href="https://openreview.net/forum?id=iaO86DUuKi" class="txtlink pub">ICLR 2021</a>&nbsp;&bull;
+		  <a href="https://arxiv.org/pdf/2010.14497.pdf" class="txtlink">pdf</a>&nbsp;&bull;
+  		  <!-- <a href="javascript:toggleInfo('Bharadwaj20','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  		  <!-- <a href="javascript:toggleInfo('Bharadwaj20','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		  <a href="https://sites.google.com/view/conservative-safety-critics/home" class="txtlink">project page</a>
+  		  <!-- Any other links-->
+		  <br><br>
+		<p>The key idea of our algorithm is to train a conservative safety critic that overestimates how unsafe a particular state is and modifies the exploration strategy to appropriately account for this safety under-estimate (by overestimating the probability of failure). Empirically, we show that the proposed approach can achieve competitive performance on challenging navigation, manipulation, and locomotion tasks while incurring significantly lower catastrophic failure rates during training than prior methods.</p>
+  	      </div>
+	    </pubcore>
+	    
+  	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!--   	      <div id="abs_Bharadwaj20" class="abstract noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<p id="abstract_Bharadwaj20">Safe exploration presents a major challenge in reinforcement learning (RL): when active data collection requires deploying partially trained policies, we must ensure that these policies avoid catastrophically unsafe regions, while still enabling trial and error learning. In this paper, we target the problem of safe exploration in RL by learning a conservative safety estimate of environment states through a critic, and provably upper bound the likelihood of catastrophic failures at every training iteration. We theoretically characterize the tradeoff between safety and policy improvement, show that the safety constraints are likely to be satisfied with high probability during training, derive provable convergence guarantees for our approach, which is no worse asymptotically than standard RL, and demonstrate the efficacy of the proposed approach on a suite of challenging navigation, manipulation, and locomotion tasks. Empirically, we show that the proposed approach can achieve competitive task performance while incurring significantly lower catastrophic failure rates during training than prior methods. Videos are at https://sites.google.com/view/conservative-safety-critics/home.</p> -->
+<!--   	      </div> -->
+	      
+<!--   	      <\!-- bib data -\-> -->
+<!--   	      <div id="bib_Bharadwaj20" class="bib noshow"> -->
+<!--   		<hr class="half"> -->
+<!--   		<pre id="pre_Bharadwaj20">@article{bharadhwaj2020conservative, -->
+<!--   title={Conservative Safety Critics for Exploration}, -->
+<!--   author={Bharadhwaj, Homanga and Kumar, Aviral and Rhinehart, Nicholas and Levine, Sergey and Shkurti, Florian and Garg, Animesh}, -->
+<!--   journal={arXiv preprint arXiv:2010.14497}, -->
+<!--   year={2020} -->
+<!-- } -->
+<!--   		</pre> -->
+<!--   	      </div> -->
+<!--   	    </pubaux> -->
+	  </publication>
+
+	  <publication class="forecasting av repr generative">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="https://arxiv.org/abs/2003.08376">
+		  <!-- Image file location -->
+		  <img src="img/spf2.gif" class="pubimg borderimg" alt="gif depicting SPF2 method">
+		</a>
+	      </div>
+	      <div class="info" id="Weng20">
+		<!-- Title -->
+		<ptitle2>Inverting the Pose Forecasting Pipeline with SPF<sup>2</sup>: Sequential Pointcloud Forecasting for Sequential Pose Forecasting</ptitle2><br>
+		<!-- Author list -->
+		<p class="author">X. Weng, J. Wang, S. Levine, K. Kitani, <strong>N. Rhinehart</strong></p>
+		<a href="https://arxiv.org/abs/2003.08376" class="txtlink pub">CoRL 2020</a>&nbsp;&bull;
+		<a href="https://arxiv.org/pdf/2003.08376.pdf" class="txtlink" id="Weng19pdf">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Weng20','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Weng20','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="http://www.xinshuoweng.com/projects/SPF2/" class="txtlink">project page</a>
+		<!-- Any other links -->
+		<br><br>
+		<p>Instead of a standard pipeline for trajectory forecasting that first (1) detects objects with LiDAR (2) forecasts object pose trajectories, we ''inverted'' it to create a new pipeline that (1) forecasts LiDAR trajectories (2) detects object pose trajectories. We found that our proposed pipeline is competitive with the standard pipeline in the domains of vehicle forecasting and robotic manipulation forecasting, and has the ability to scale its performance with the addition of unlabelled LiDAR data.</p>
+	      </div>
+	    </pubcore>
+
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Weng20" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Weng20">Many autonomous systems forecast aspects of the future in order to aid decision-making. For example, self-driving vehicles and robotic manipulation systems often forecast future object poses by first detecting and tracking objects. However, this detect-then-forecast pipeline is expensive to scale, as pose forecasting algorithms typically require labeled sequences of object poses, which are costly to obtain in 3D space. Can we scale performance without requiring additional labels? We hypothesize yes, and propose inverting the detect-then-forecast pipeline. Instead of detecting, tracking and then forecasting the objects, we propose to first forecast 3D sensor data (e.g., point clouds with $100$k points) and then detect/track objects on the predicted point cloud sequences to obtain future poses, i.e., a forecast-then-detect pipeline. This inversion makes it less expensive to scale pose forecasting, as the sensor data forecasting task requires no labels. Part of this work's focus is on the challenging first step -- Sequential Pointcloud Forecasting (SPF), for which we also propose an effective approach, SPFNet. To compare our forecast-then-detect pipeline relative to the detect-then-forecast pipeline, we propose an evaluation procedure and two metrics. Through experiments on a robotic manipulation dataset and two driving datasets, we show that SPFNet is effective for the SPF task, our forecast-then-detect pipeline outperforms the detect-then-forecast approaches to which we compared, and that pose forecasting performance improves with the addition of unlabeled data. Our project website is http://www.xinshuoweng.com/projects/SPF2.</p> -->
+<!-- 	      </div> -->
+
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Weng20" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Weng20"> -->
+<!-- @misc{weng2020inverting, -->
+<!--  title={Inverting the Pose Forecasting Pipeline with SPF2: Sequential Pointcloud Forecasting for Sequential Pose Forecasting},  -->
+<!--  author={Xinshuo Weng and Jianren Wang and Sergey Levine and Kris Kitani and Nicholas Rhinehart}, -->
+<!--  year={2020}, -->
+<!--  eprint={2003.08376}, -->
+<!--  archivePrefix={arXiv}, -->
+<!--  primaryClass={cs.CV} -->
+<!-- }</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="predcont il av generative">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="http://proceedings.mlr.press/v119/filos20a.html">
+		  <!-- Image file location -->
+		  <img src="img/rip_animation_edit.gif" class="pubimg borderimg" alt="gif depicting RIP method">
+		</a>
+	      </div>
+
+	      <div class="info" id="Filos20">
+		<!-- Title -->
+		<ptitle2>Can Autonomous Vehicles Identify, Recover from, and Adapt to Distribution Shifts?</ptitle2><br>
+		<!-- Author list -->
+		<p class="author">A. Filos*, P. Tigas*, R. McAllister, <strong>N. Rhinehart</strong>, S. Levine, Y. Gal</p>
+		<a href="http://proceedings.mlr.press/v119/filos20a.html" class="txtlink pub">ICML 2020</a>&nbsp;&bull;
+		<a href="http://proceedings.mlr.press/v119/filos20a/filos20a.pdf" class="txtlink" id="Filos20">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Filos20','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Filos20','bib')" class="txtlink">show bib</a>&nbsp;&bull; -->
+		<a href="https://github.com/OATML/oatomobile/" class="txtlink">code</a>&nbsp;&bull;
+		<a href="https://oatml.cs.ox.ac.uk/blog/2020/07/09/can_autonomous_vehicles_recover_from_ood.html" class="txtlink">blog post</a>&nbsp;&bull;
+		<a href="https://sites.google.com/view/av-detect-recover-adapt">project page</a>
+		<!-- <a href="javascript:toggleInfo('Filos20','bib')" class="txtlink" >show bib</a> -->
+		<!-- Any other links -->
+		<br><br>
+		<p>We used recent techniques to estimate the epistemic uncertainty of a Deep Imitative Model used for planning vehicle trajectories and found that we could use this epistemic uncertainty to reliably detect out-of-distribution situations, plan more effectively in them, and adapt the model online with expert feedback.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Filos20" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Filos20">Out-of-distribution (OOD) driving scenarios are a common failure of learning agents at deployment, typically leading to arbitrary deductions and poorly-informed decisions. In principle, detection of and adaption to OOD scenes can mitigate their adverse effects. However, no benchmark evaluating OOD detection and adaption currently exists to compare methods. In this paper, we introduce an autonomous car novel-scene benchmark, CARNOVEL, to evaluate the robustness of driving agents to a suite of tasks involving distribution shift. We also highlight the limitations of current approaches to novel driving scenes and propose an epistemic uncertainty-aware planning method, called robust imitative planning (RIP). Our method can detect and recover from some distribution shifts, reducing the overconfident but catastrophic extrapolations in out-of-training-distribution scenes. When the model's uncertainty quantification is insufficient to suggest a safe course of action by itself, it is used to query the driver for feedback, enabling sample-efficient online adaptation, a variant of our method we term adaptive robust imitative planning (AdaRIP).</p> -->
+<!-- 	      </div> -->
+	      
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Filos20" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Filos20"> -->
+<!-- @article{filos2020can, -->
+<!--   title={Can autonomous vehicles identify, recover from, and adapt to distribution shifts?}, -->
+<!--   author={Filos, Angelos and Tigas, Panagiotis and McAllister, Rowan and Rhinehart, Nicholas and Levine, Sergey and Gal, Yarin}, -->
+<!--   journal={arXiv preprint arXiv:2006.14911}, -->
+<!--   year={2020} -->
+<!-- }		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>	    
+
+	  <publication class="forecasting fpv generative" id="genhybridpub">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Guan_Generative_Hybrid_Representations_for_Activity_Forecasting_With_No-Regret_Learning_CVPR_2020_paper.pdf">
+		  <!-- Image file location -->
+		  <img src="img/guan19_teaser_resize.jpg" class="pubimg borderimg" alt="flowchart of Guan19 method">
+		</a>
+	      </div>
+
+	      <div class="info" id="Guan20">
+		<!-- Title -->
+		<ptitle2>Generative Hybrid Representations for Activity Forecasting with No-Regret Learning</ptitle2>		  
+		<!-- Author list -->
+		<p class="author">J. Guan, Y. Yuan, K. M. Kitani, <strong>N. Rhinehart</strong></p>
+		<important>Oral Presentation (4.6% of submissions)</important><br>			
+		<a href="http://openaccess.thecvf.com/content_CVPR_2020/html/Guan_Generative_Hybrid_Representations_for_Activity_Forecasting_With_No-Regret_Learning_CVPR_2020_paper.html" class="txtlink pub">CVPR 2020</a>&nbsp;&bull;
+		<a href="http://openaccess.thecvf.com/content_CVPR_2020/papers/Guan_Generative_Hybrid_Representations_for_Activity_Forecasting_With_No-Regret_Learning_CVPR_2020_paper.pdf" class="txtlink" id="Guan20pdf">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Guan20','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Guan20','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="http://openaccess.thecvf.com/content_CVPR_2020/supplemental/Guan_Generative_Hybrid_Representations_CVPR_2020_supplemental.pdf" class="txtlink" id="Guan20supp">supp</a>
+		<!-- Any other links -->
+		<br><br>
+		<p>Some activites are best represented discretely, others continuously. We learn a deep likelihood-based generative model to jointly forecast discrete and continuous activities, and show how to tweak the model to learn efficiently online.</p>
+	      </div>
+	    </pubcore>
+
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Guan20" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Guan20">Automatically reasoning about future human behaviors is a difficult problem but has significant practical applications to assistive systems. Part of this difficulty stems from learning systems' inability to represent all kinds of behaviors. Some behaviors, such as motion, are best described with continuous representations, whereas others, such as picking up a cup, are best described with discrete representations. Furthermore, human behavior is generally not fixed: people can change their habits and routines. This suggests these systems must be able to learn and adapt continuously. In this work, we develop an efficient deep generative model to jointly forecast a person's future discrete actions and continuous motions. On a large-scale egocentric dataset, EPIC-KITCHENS, we observe our method generates high-quality and diverse samples while exhibiting better generalization than related generative models. Finally, we propose a variant to continually learn our model from streaming data, observe its practical effectiveness, and theoretically justify its learning efficiency.</p> -->
+<!-- 	      </div> -->
+	      
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Guan20" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Guan20">@InProceedings{Guan_2020_CVPR, -->
+<!--  author = {Guan, Jiaqi and Yuan, Ye and Kitani, Kris M. and Rhinehart, Nicholas}, -->
+<!--  title = {Generative Hybrid Representations for Activity Forecasting With No-Regret Learning}, -->
+<!--  booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, -->
+<!--  month = {June}, -->
+<!--  year = {2020} -->
+<!-- }</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+
+	  <publication class="predcont il rl av repr generative">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="https://sites.google.com/view/imitativeforecastingcontrol" >
+		  <!-- Image file location -->
+		  <video controls autoplay loop muted class="pubimg borderimg">
+		    <source src="videos/deep_im_vid.mov" type="video/mp4">
+		  </video>
+		</a>
+	      </div>
+
+	      <div class="info" id="Rhinehart18c">
+		<!-- Title -->
+		<ptitle2>Deep Imitative Models for Flexible Inference, Planning, and Control</ptitle2><br>
+		<!-- Author list -->
+		<p class="author"><strong>N. Rhinehart</strong>, R. McAllister, S. Levine</p>
+		<!-- Contributed talk at NeurIPS 2018 MLITS Workshop (<strong>top 3 of 25 papers</strong>)<br> -->
+		<!-- Contributed talk at NeurIPS 2018 Infer2Control Workshop (<strong>top 6 of 27 papers</strong>)<br> -->
+		
+		<!-- Venue -->
+
+		<!-- <div style="height:10px"></div> -->
+		<!-- Abstract, bib expander links -->
+		<a href="https://openreview.net/forum?id=Skl4mRNYDr" class="txtlink pub">ICLR 2020</a>&nbsp;&bull;
+		<a  href="https://arxiv.org/abs/1810.06544.pdf" class="txtlink" id="DIMpdf">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Rhinehart18c','abstract')" class="txtlink" >show abs</a>&nbsp;&bull;  -->
+		<!-- <a href="javascript:toggleInfo('Rhinehart18c','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="https://github.com/nrhine1/deep_imitative_models" class="txtlink">code (tf, official)</a>&nbsp;&bull;
+		<a href="https://github.com/OATML/oatomobile" class="txtlink">code (pytorch, reimplementation)</a>&nbsp;&bull;
+		<a href="https://sites.google.com/view/imitative-models" class="txtlink">project page</a>&nbsp;&bull;
+		<a href="https://www.youtube.com/watch?v=p-ltQdNFlVg&feature=youtu.be" class="txtlink">talk video</a>
+		<!-- Any other links -->
+		<!-- <a href="LINK_DEST_GOES_HERE">LINK NAME</a>&nbsp;&bull; -->
+		<br><br>
+		<p>We learn a deep conditional distribution of human driving behavior to guide planning and control of an autonomous car in simulation, without any trial-and-error data. We show that the approach can be adapted to execute tasks that were never demonstrated, including safely avoiding potholes, and is robust to misspecified goals that would cause it to violate its model of the rules of the road, and achieve S.O.T.A. on the CARLA benchmark.</p>
+	      </div>
+	    </pubcore>
+	    
+            <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart18c" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart18c"> -->
+<!-- Imitation Learning (IL) is an appealing approach to learn desirable autonomous behavior. However, directing IL to achieve arbitrary goals is difficult. In contrast, planning-based algorithms use dynamics models and reward functions to achieve goals. Yet, reward functions that evoke desirable behavior are often difficult to specify. In this paper, we propose "Imitative Models" to combine the benefits of IL and goal-directed planning. Imitative Models are probabilistic predictive models of desirable behavior able to plan interpretable expert-like trajectories to achieve specified goals. We derive families of flexible goal objectives, including constrained goal regions, unconstrained goal sets, and energy-based goals. We show that our method can use these objectives to successfully direct behavior. Our method substantially outperforms six IL approaches and a planning-based approach in a dynamic simulated autonomous driving task, and is efficiently learned from expert demonstrations without online data collection.  We also show our approach is robust to poorly-specified goals, such as goals on the wrong side of the road.		   -->
+<!-- 		</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Rhinehart18c" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Rhinehart18c"> -->
+<!-- @inproceedings{Rhinehart2020Deep, -->
+<!--  title={Deep Imitative Models for Flexible Inference, Planning, and Control}, -->
+<!--  author={Nicholas Rhinehart and Rowan McAllister and Sergey Levine}, -->
+<!--  booktitle={International Conference on Learning Representations}, -->
+<!--  year={2020}, -->
+<!--  url={https://openreview.net/forum?id=Skl4mRNYDr} -->
+<!-- }</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="y2019 forecasting av repr generative" id="precogpub">
+	    <pubcore>
+	      <div class="aside">	    <!-- Image link destination -->
+		<a href="http://sites.google.com/view/precog">
+		  <video controls autoplay loop muted class="pubimg borderimg">
+		    <source src="videos/precog_teaser.mov" type="video/mp4">
+		  </video>
+		</a>
+	      </div>
+	      <div class="info" id="Rhinehart19a">
+		<!-- Title -->
+		<ptitle2>PRECOG: PREdiction Conditioned On Goals in Visual Multi-Agent Settings</ptitle2>
+		<!-- Author list -->
+		<p class="author"><strong>N. Rhinehart</strong>, R. McAllister, K. M. Kitani, S. Levine</p>
+		<important>Best Paper, ICML 2019 Workshop on AI for Autonomous Driving</important><br>
+		<a href="http://openaccess.thecvf.com/content_ICCV_2019/html/Rhinehart_PRECOG_PREdiction_Conditioned_on_Goals_in_Visual_Multi-Agent_Settings_ICCV_2019_paper.html" class="txtlink pub">ICCV 2019</a>&nbsp;&bull;
+		<a href="https://arxiv.org/pdf/1905.01296.pdf" class="txtlink" id="precogpdf">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Rhinehart19a','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Rhinehart19a','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="http://sites.google.com/view/precog" class="txtlink">project page</a>&nbsp;&bull;
+		<a href="https://github.com/nrhine1/precog" class="txtlink">code</a>&nbsp;&bull;
+		<a href="https://github.com/nrhine1/precog_carla_dataset" class="txtlink">visualization code</a>&nbsp;&bull;
+		<a href="papers/Rhinehart_PRECOG_PREdiction_Conditioned_on_Goals_in_Visual_Multi-Agent_Settings_ICCV_2019_paper.pdf" class="txtlink" id="precogpdf">iccv pdf</a>&nbsp;&bull;
+		<!-- <a href="presentations/iccv19_invited_talk_autonomous_driving_workshop.pdf" class="txtlink">iccv talk slides (pdf)</a>&nbsp;&bull; -->
+		<a href="https://www.youtube.com/watch?v=tlKsFYKC-4k" class="txtlink">Baylearn talk (youtube)</a>
+		<!-- Any other links -->
+		<br><br>
+		<p>We perform deep conditional forecasting with multiple interacting agents: when you control one of them, you can use its goals to better predict what nearby agents will do. The model also outperforms S.O.T.A. methods on the more standard task of unconditional forecasting.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart19a" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart19a">For autonomous vehicles (AVs) to behave appropriately on roads populated by human-driven vehicles, they must be able to reason about the uncertain intentions and decisions of other drivers from rich perceptual information. Towards these capabilities, we present a probabilistic forecasting model of future interactions of multiple agents. We perform both standard forecasting and conditional forecasting with respect to the AV's goals. Conditional forecasting reasons about how all agents will likely respond to specific decisions of a controlled agent. We train our model on real and simulated data to forecast vehicle trajectories given past positions and LIDAR. Our evaluation shows that our model is substantially more accurate in multi-agent driving scenarios compared to existing state-of-the-art. Beyond its general ability to perform conditional forecasting queries, we show that our model's predictions of all agents improve when conditioned on knowledge of the AV's intentions, further illustrating its capability to model agent interactions.</p> -->
+<!-- 	      </div> -->
+
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Rhinehart19a" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Rhinehart19a"> -->
+<!-- @InProceedings{Rhinehart_2019_ICCV, -->
+<!-- author = {Rhinehart, Nicholas and McAllister, Rowan and Kitani, Kris and Levine, Sergey}, -->
+<!-- title = {PRECOG: PREdiction Conditioned on Goals in Visual Multi-Agent Settings}, -->
+<!-- booktitle = {The IEEE International Conference on Computer Vision (ICCV)}, -->
+<!-- month = {October}, -->
+<!-- year = {2019} -->
+<!-- }		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="y2019 il generative">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="papers/DirectedInfoGAILICLR2019.pdf">
+		  <!-- Image file location -->
+		  <img src="img/walker_frames_resize.png" class="pubimg borderimg" alt="image from Directed-Info GAIL experiments">
+		</a>
+	      </div>
+	      <br>
+	      <div class="info" id="Sharma18">
+		<!-- Title -->
+		<ptitle2>Directed-Info GAIL: Learning Hierarchical Policies from Unsegmented Demonstrations using Directed Information</ptitle2>
+		<!-- Author list -->
+		<p class="author">M. Sharma*, A. Sharma*, <strong>N. Rhinehart</strong>, K. M. Kitani<br></p>
+		<a href="https://openreview.net/forum?id=BJeWUs05KQ" class="txtlink pub">ICLR 2019</a>&nbsp;&bull;
+		<a href="papers/DirectedInfoGAILICLR2019.pdf" class="txtlink" id="Sharma18pdf">pdf</a>&nbsp;&bull; 
+		<!-- <a href="javascript:toggleInfo('Sharma18','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Sharma18','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="https://sites.google.com/view/directedinfo-gail" class="txtlink">project page</a>
+		<!-- Any other links -->
+		<!-- <a href="LINK_DEST_GOES_HERE">LINK NAME</a>&nbsp;&bull; -->
+		<br><br>
+		<p>Many behaviors are naturally composed of sub-tasks. Our approach learns to imitate behaviors with subtasks by discovering topics of latent behavior to influence its imitation.</p>
+	      </div>
+	    </pubcore>
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Sharma18" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Sharma18">The use of imitation learning to learn a single policy for a complex task that has multiple modes or hierarchical structure can be challenging. In fact, previous work has shown that when the modes are known, learning separate policies for each mode or sub-task can greatly improve the performance of imitation learning. In this work, we discover the interaction between sub-tasks from their resulting state-action trajectory sequences using a directed graphical model. We propose a new algorithm based on the generative adversarial imitation learning framework which automatically learns sub-task policies from unsegmented demonstrations. Our approach maximizes the directed information flow in the graphical model between sub-task latent variables and their generated trajectories. We also show how our approach connects with the existing Options framework, which is commonly used to learn hierarchical policies.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Sharma18" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Sharma18">@inproceedings{ -->
+<!-- sharma2018directedinfo, -->
+<!-- title={Directed-Info {GAIL}: Learning Hierarchical Policies from Unsegmented Demonstrations using Directed Information}, -->
+<!-- author={Mohit Sharma and Arjun Sharma and Nicholas Rhinehart and Kris M. Kitani}, -->
+<!-- booktitle={International Conference on Learning Representations}, -->
+<!-- year={2019}, -->
+<!-- url={https://openreview.net/forum?id=BJeWUs05KQ}, -->
+<!-- } -->
+<!-- 		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>		   
+
+	  <publication class="fpv forecasting">
+	    <pubcore>
+	      <div class="aside">
+		<a href="https://ieeexplore.ieee.org/document/8481580">
+		  <video controls autoplay loop muted class="pubimg borderimg">
+		    <source src="videos/darko_teaser.mov" type="video/mp4">
+		  </video>
+		</a>
+	      </div>
+
+	      <div class="info" id="Rhinehart18TPAMI" style="margin-bottom:10px; float: center;">
+		<ptitle2>First-Person Activity Forecasting from Video with Online Inverse Reinforcement Learning</ptitle2>
+		<p class="author"><strong>N. Rhinehart</strong>, K. Kitani<br></p>
+
+		<!-- <p>We address the problem of incrementally modeling and forecasting long-term goals of a first-person camera wearer: what the user will do, where they will go, and what goal they seek. In contrast to prior work in trajectory forecasting, our algorithm, DARKO, goes further to reason about semantic states (will I pick up an object?), and future goal states that are far in terms of both space and time. DARKO learns and forecasts from first-person visual observations of the user's daily behaviors via an Online Inverse Reinforcement Learning (IRL) approach. Classical IRL discovers only the rewards in a batch setting, whereas DARKO discovers the transitions, rewards, and goals of a user from streaming data. Among other results, we show DARKO forecasts goals better than competing methods in both noisy and ideal settings, and our approach is theoretically and empirically no-regret.</p> -->
+		<!-- <div style="height:10px"></div> -->
+		<a href="https://ieeexplore.ieee.org/document/8481580" class="txtlink pub">TPAMI 2018</a>&nbsp;&bull;
+		<a  href="papers/DARKOTPAMI2018.pdf" class="txtlink" id="DARKOTPAMIpdf">pdf</a>
+		<!-- <a href="javascript:toggleInfo('Rhinehart18TPAMI','abstract')" class="txtlink" >show abs</a>&nbsp;&bull;  -->
+		<!-- <a href="javascript:toggleInfo('Rhinehart18TPAMI','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<!-- <a href="darko.html" class="txtlink" >project page</a> -->
+		<br><br>
+		<p>We continuously model and forecast long-term goals of a first-person camera wearer through our Online Inverse RL algorithm. We show our approach learns efficiently continuously in theory and practice.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart18TPAMI" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart18TPAMI">We address the problem of incrementally modeling and forecasting long-term goals of a first-person camera wearer: what the user will do, where they will go, and what goal they seek. In contrast to prior work in trajectory forecasting, our algorithm, DARKO, goes further to reason about semantic states (will I pick up an object?), and future goal states that are far in terms of both space and time. DARKO learns and forecasts from first-person visual observations of the user's daily behaviors via an Online Inverse Reinforcement Learning (IRL) approach. Classical IRL discovers only the rewards in a batch setting, whereas DARKO discovers the transitions, rewards, and goals of a user from streaming data. Among other results, we show DARKO forecasts goals better than competing methods in both noisy and ideal settings, and our approach is theoretically and empirically no-regret.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Rhinehart18TPAMI" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Rhinehart18TPAMI">@ARTICLE{8481580,  -->
+<!-- author={N. Rhinehart and K. Kitani},  -->
+<!-- journal={IEEE Transactions on Pattern Analysis and Machine Intelligence},  -->
+<!-- title={First-Person Activity Forecasting from Video with Online Inverse Reinforcement Learning},  -->
+<!-- year={2018},  -->
+<!-- volume={},  -->
+<!-- number={},  -->
+<!-- pages={1-1},  -->
+<!-- keywords={Forecasting;Task analysis;Predictive models;Trajectory;Cameras;Learning (artificial intelligence);Visualization;First-Person Vision;Activity Forecasting;Inverse Reinforcement Learning;Online Learning},  -->
+<!-- doi={10.1109/TPAMI.2018.2873794},  -->
+<!-- ISSN={0162-8828},  -->
+<!-- month={},}		   -->
+<!-- 		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="forecasting av il generative">
+	    <pubcore>
+	      <div class="aside">
+		<!-- Image link destination -->
+		<a href="https://link.springer.com/chapter/10.1007/978-3-030-01261-8_47">
+		  <!-- Image file location -->
+		  <video controls autoplay loop muted class="pubimg borderimg">
+		    <source src="videos/r2p2_teaser.mov" type="video/mp4">
+		  </video>
+		</a>
+	      </div>
+	      <div class="info" id="r2p2">
+		<!-- Title -->
+		<ptitle2>R2P2: A ReparameteRized Pushforward Policy for Diverse, Precise Generative Path Forecasting</ptitle2>
+		<!-- Author list -->
+		<p class="author"><strong>N. Rhinehart</strong>, K. M. Kitani, P. Vernaza</p>
+		<!-- Venue -->
+		<!-- <p>We propose a method to forecast a vehicle's ego-motion as a distribution over spatiotemporal paths, conditioned on features (e.g., from LIDAR and images) embedded in an overhead map. The method learns a policy inducing a distribution over simulated trajectories that is both diverse (produces most paths likely under the data) and precise (mostly produces paths likely under the data). This balance is achieved through minimization of a symmetrized cross-entropy between the distribution and demonstration data. We propose concrete policy architectures for this model, discuss our evaluation metrics relative to previously-used metrics, and demonstrate the superiority of our method relative to state-of-the-art methods in both the KITTI dataset and a similar but novel and larger real-world dataset explicitly designed for the vehicle forecasting domain.</p> -->
+		<!-- <div style="height:10px"></div> -->
+		<!-- Abstract, bib expander links -->
+		<a href="https://link.springer.com/chapter/10.1007/978-3-030-01261-8_47" class="txtlink pub">ECCV 2018</a>&nbsp;&bull;
+		<a  href="papers/r2p2_cvf.pdf" class="txtlink" id="R2P2pdf">pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Rhinehart18','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Rhinehart18','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<!-- <a href="R2P2.html" class="txtlink" >project page</a>&nbsp;&bull; -->
+		<a  href="papers/r2p2-supp-camera-ready.pdf" class="txtlink" >supplement</a>&nbsp;&bull;
+		<a href="https://medium.com/analytics-vidhya/game-of-modes-diverse-trajectory-forecasting-with-pushforward-distributions-315b1b30d5e6" class="txtlink">blog post (third-party)</a>
+		<!-- <a href="https://www.youtube.com/watch?v=JbNeLiNnvII&feature=youtu.be&t=2h12m51s" class="txtlink">talk</a> -->
+		<!-- <a  href="posters/r2p2_eccv18_poster.pdf" class="txtlink" >poster</a> -->
+		<!-- Any other links -->
+		<!-- <a href="LINK_DEST_GOES_HERE">LINK NAME</a>&nbsp;&bull; -->
+		<br><br>
+		<p>We designed an objective to jointly maximize diversity and precision for generative models, and designed a deep autoregressive flow to efficiently optimize this objective for the task of motion forecasting. Unlike many popular generative models, ours can exactly evaluate its probability density function for arbitrary points.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart18" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart18">We propose a method to forecast a vehicle's ego-motion as a distribution over spatiotemporal paths, conditioned on features (e.g., from LIDAR and images) embedded in an overhead map. The method learns a policy inducing a distribution over simulated trajectories that is both diverse (produces most paths likely under the data) and precise (mostly produces paths likely under the data). This balance is achieved through minimization of a symmetrized cross-entropy between the distribution and demonstration data.  By viewing the simulated-outcome distribution as the pushforward of a simple distribution under a simulation operator, we obtain expressions for the cross-entropy metrics that can be efficiently evaluated and differentiated, enabling stochastic-gradient optimization. We propose concrete policy architectures for this model, discuss our evaluation metrics relative to previously-used metrics, and demonstrate the superiority of our method relative to state-of-the-art methods in both the KITTI dataset and a similar but novel and larger real-world dataset explicitly designed for the vehicle forecasting domain.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Rhinehart18" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Rhinehart18">@InProceedings{Rhinehart_2018_ECCV, -->
+<!-- author = {Rhinehart, Nicholas and Kitani, Kris M. and Vernaza, Paul}, -->
+<!-- title = {R2P2: A ReparameteRized Pushforward Policy for Diverse, Precise Generative Path Forecasting}, -->
+<!-- booktitle = {The European Conference on Computer Vision (ECCV)}, -->
+<!-- month = {September}, -->
+<!-- year = {2018} -->
+<!-- }		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <!-- Use this only for pubs after the first one   -->
+	  <publication class="il">
+	    <pubcore>
+	      <div class="aside">			    
+		<!-- Image link destination -->
+		<a href="https://arxiv.org/abs/1806.07822">
+		  <!-- Image file location -->
+		  <img src="img/ddil_teaser.png" class="pubimg borderimg" alt="depiction of DDIL method">
+		</a>
+	      </div>
+	      <div class="info" id="Shankar18">
+		<!-- Title -->
+		<ptitle2>Learning Neural Parsers with Deterministic Differentiable Imitation Learning</ptitle2>
+		<!-- Author list -->
+		<p class="author">T. Shankar, <strong>N. Rhinehart</strong>, K. Muelling, K. M. Kitani</p>
+		<!-- Venue -->
+		<!-- <p>We pose the segmentation problem as an imitation learning problem by using a segmentation algorithm in the place of an expert, that has access to a small dataset with known foreground-background segmentations. We introduce a novel deterministic policy gradient update, DRAG, in the form of a deterministic actor-critic variant of AggreVaTeD, to train our neural network based object parser. We will also show that our approach can be seen as extending DDPG to the Imitation Learning scenario. Training our neural parser to imitate the oracle via DRAG allow our neural parser to outperform several existing imitation learning approaches.</p> -->
+
+		<!-- <div style="height:10px"></div> -->
+		<!-- Abstract, bib expander links -->
+		<a href="http://proceedings.mlr.press/v87/shankar18a.html" class="txtlink pub">CORL 2018</a>&nbsp;&bull;
+		<a  href="papers/LearningNeuralParsersshankar18a.pdf" class="txtlink" >pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Shankar18','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Shankar18','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<!-- Any other links -->
+		<a href="https://github.com/tanmayshankar/ParsingbyImitation" class="txtlink">code</a>
+		<br><br>
+		<p>We developed and applied a new imitation learning approach for the task of sequential visual parsing. The approach learns to imitate an expert parsing oracle.</p>
+	      </div>
+	    </pubcore>
+
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Shankar18" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Shankar18">We address the problem of spatial segmentation of a 2D object in the context of a robotic system for painting, where an optimal segmentation depends on both the appearance of the object and the size of each segment. Since each segment must take into account appearance features at several scales, we take a hierarchical grammar-based parsing approach to decompose the object into 2D segments for painting. Since there are many ways to segment an object the solution space is extremely large and it is very challenging to utilize an exploration based optimization approach like reinforcement learning. Instead, we pose the segmentation problem as an imitation learning problem by using a segmentation algorithm in the place of an expert, that has access to a small dataset with known foreground-background segmentations. During the imitation learning process, we learn to imitate the oracle (segmentation algorithm) using only the image of the object, without the use of the known foreground-background segmentations. We introduce a novel deterministic policy gradient update, DRAG, in the form of a deterministic actor-critic variant of AggreVaTeD, to train our neural network based object parser. We will also show that our approach can be seen as extending DDPG to the Imitation Learning scenario. Training our neural parser to imitate the oracle via DRAG allow our neural parser to outperform several existing imitation learning approaches.</p> -->
+<!-- 	      </div> -->
+
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Shankar18" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Shankar18">@InProceedings{pmlr-v87-shankar18a, -->
+<!--   title = 	 {Learning Neural Parsers with Deterministic Differentiable Imitation Learning}, -->
+<!--   author = 	 {Shankar, Tanmay and Rhinehart, Nicholas and Muelling, Katharina and Kitani, Kris M.}, -->
+<!--   booktitle = 	 {Proceedings of The 2nd Conference on Robot Learning}, -->
+<!--   pages = 	 {592--604}, -->
+<!--   year = 	 {2018}, -->
+<!--   editor = 	 {Billard, Aude and Dragan, Anca and Peters, Jan and Morimoto, Jun}, -->
+<!--   volume = 	 {87}, -->
+<!--   series = 	 {Proceedings of Machine Learning Research}, -->
+<!--   address = 	 {}, -->
+<!--   month = 	 {29--31 Oct}, -->
+<!--   publisher = 	 {PMLR}, -->
+<!--   pdf = 	 {http://proceedings.mlr.press/v87/shankar18a/shankar18a.pdf}, -->
+<!--   url = 	 {http://proceedings.mlr.press/v87/shankar18a.html}, -->
+<!-- }		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <!-- New publication -->
+	  <publication class="il">
+	    <pubcore>
+	      <div class="aside">
+		<img src="img/hirl.png" class="pubimg borderimg" alt="depiction of HIRL method">
+		<!-- </a> -->
+	      </div>
+	      <div class="info" id="Pan18">
+		<ptitle2>Human-Interactive Subgoal Supervision for Efficient Inverse Reinforcement Learning</ptitle2>
+		<p class="author">X. Pan, E. Ohn-Bar, <strong>N. Rhinehart</strong>, Y. Xu, Y. Shen, K. M. Kitani<br></p>
+		<!-- <p>We analyze the benefit of incorporating a notion of subgoals into Inverse Reinforcement Learning (IRL) with a Human-In-The-Loop (HITL) framework.  The learning process is interactive, with a human expert first providing input in the form of full demonstrations along with some subgoal states. These subgoal states defines a set of sub-tasks for the learning agent to complete in order to achieve the final goal. We demonstrate that subgoal-based interactive structuring of the learning task results in significantly more efficient learning, requiring only a fraction of the demonstration data needed for learning the underlying reward function with a baseline IRL model. </p> -->
+		<!-- <div style="height:10px"></div> -->
+		<a href="https://arxiv.org/abs/1806.08479" class="txtlink pub" >AAMAS 2018</a>&nbsp;&bull;
+		<a href="papers/PanAAMAS2018.pdf" class="txtlink" >pdf</a>
+		<!-- <a href="javascript:toggleInfo('Pan18','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Pan18','bib')" class="txtlink" >show bib</a> -->
+		<br><br>
+		<p>We analyze the benefit of incorporating a notion of subgoals into Inverse Reinforcement Learning (IRL) with a Human-In-The-Loop (HITL) framework and find our approach to require less demonstration data than a baseline Inverse RL approach</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+	<!--     <pubaux> -->
+	<!--       <div id="abs_Pan18" class="abstract noshow"> -->
+	<!-- 	<hr class="half"> -->
+	<!-- 	<p id="abstract_Pan18">Humans are able to understand and perform complex tasks by strategically structuring tasks into incremental steps or sub-goals. For a robot attempting to learn to perform a sequential task with critical subgoal states, these subgoal states can provide a natural opportunity for interaction with a human expert. This paper analyzes the benefit of incorporating a notion of subgoals into Inverse Reinforcement Learning (IRL) with a Human-In-The-Loop (HITL) framework. The learning process is interactive, with a human expert first providing input in the form of full demonstrations along with some subgoal states. These subgoal states defines a set of sub-tasks for the learning agent to complete in order to achieve the final goal. The learning agent queries for partial demonstrations corresponding to each sub-task as needed when the learning agent struggles with individual sub-task. The proposed Human Interactive IRL (HI-IRL) framework is evaluated on several discrete path-planning tasks. We demonstrate that subgoal-based interactive structuring of the learning task results in significantly more efficient learning, requiring only a fraction of the demonstration data needed for learning the underlying reward function with a baseline IRL model.</p> -->
+	<!--       </div> -->
+	<!--       <\!-- bib data -\-> -->
+	<!--       <div id="bib_Pan18" class="bib noshow"> -->
+	<!-- 	<hr class="half"> -->
+	<!-- 	<pre id="pre_Pan18">>@inproceedings{ -->
+        <!-- pan2018hi, -->
+        <!-- title={Human-Interactive Subgoal Supervision for Efficient Inverse Reinforcement Learning}, -->
+        <!-- author={Xinlei Pan and Eshed Ohn-Bar and Nicholas Rhinehart and Yan Xu and Yilin Shen and Kris. M. Kitani}, -->
+        <!-- booktitle={International Conference on Autonomous Agents and Multiagent Systems (AAMAS)}, -->
+        <!-- year={2018}, -->
+        <!-- } -->
+	<!-- 	</pre> -->
+	<!--       </div> -->
+	<!--     </pubaux> -->
+	  </publication>
+
+	  <publication class="rl">
+	    <!-- New publication -->
+	    <pubcore>
+	      <div class="aside">
+		<a href="https://arxiv.org/abs/1709.06030" >
+		  <img src="img/n2n_pipeline.png" class="pubimg borderimg" alt="depiction of N2N method">
+		</a>
+	      </div>
+	      <br>
+	      <div class="info" id="n2n">
+		<ptitle2>N2N Learning: Network to Network Compression via Policy Gradient Reinforcement Learning</ptitle2>
+		<p class="author">A. Ashok, <strong>N. Rhinehart</strong>, F. Beainy, K. Kitani</p>
+		<!-- <p>Conventional model compression methods modify the architecture manually or using pre-defined heuristics. We introduce a principled method for learning reduced network architectures with reinforcement learning. Our experiments show that we can achieve compression rates of more than 10x for models such as ResNet-34 while maintaining similar performance to the input `teacher' network. We also present a valuable transfer learning result which shows that policies which are pre-trained on smaller `teacher' networks can be used to rapidly speed up training on larger `teacher' networks.</p> -->
+		<!-- <div style="height:10px"></div> -->
+		<a href="https://openreview.net/forum?id=B1hcZZ-AW" class="txtlink pub">ICLR 2018</a>&nbsp;&bull;
+		<a  href="papers/N2NICLR2018.pdf" class="txtlink" >pdf</a>&nbsp;&bull;
+		<!-- <a href="javascript:toggleInfo('Ashok17','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Ashok17','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+		<a href="https://github.com/nrhine1/N2N" class="txtlink">code</a>
+		<br><br>
+		<p>We designed a principled method to perform neural model compression: we trained a compression agent via RL on the sequential task of compressing large networks while maintaining high performance. The compressing agent was able to generalize to compress previously-unseen networks.</p>
+	      </div>
+	    </pubcore>
+	    
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Ashok17" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Ashok17">While bigger and deeper neural network architectures continue to advance the state-of-the-art for many computer vision tasks, real-world adoption of these networks is impeded by hardware and speed constraints. Conventional model compression methods attempt to address this problem by modifying the architecture manually or using pre-defined heuristics. Since the space of all reduced architectures is very large, modifying the architecture of a deep neural network in this way is a difficult task. In this paper, we tackle this issue by introducing a principled method for learning reduced network architectures in a data-driven way using reinforcement learning. Our approach takes a larger `teacher' network as input and outputs a compressed `student' network derived from the `teacher' network. In the first stage of our method, a recurrent policy network aggressively removes layers from the large `teacher' model. In the second stage, another recurrent policy network carefully reduces the size of each remaining layer. The resulting network is then evaluated to obtain a reward -- a score based on the accuracy and compression of the network. Our approach uses this reward signal with policy gradients to train the policies to find a locally optimal student network. Our experiments show that we can achieve compression rates of more than 10x for models such as ResNet-34 while maintaining similar performance to the input `teacher' network. We also present a valuable transfer learning result which shows that policies which are pre-trained on smaller `teacher' networks can be used to rapidly speed up training on larger `teacher' networks.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Ashok17" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Ashok17"> -->
+<!-- @inproceedings{ -->
+<!--         ashok2018nn, -->
+<!--         title={N2N learning: Network to Network Compression via Policy Gradient Reinforcement Learning}, -->
+<!--         author={Anubhav Ashok and Nicholas Rhinehart and Fares Beainy and Kris M. Kitani}, -->
+<!--         booktitle={International Conference on Learning Representations}, -->
+<!--         year={2018}, -->
+<!--         url={https://openreview.net/forum?id=B1hcZZ-AW}, -->
+<!--         }		   -->
+<!-- 		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="forecasting rl il">
+	    <pubcore>
+	      <div class="aside">
+		<a href="https://arxiv.org/abs/1709.08520" >
+		  <img src="img/psd_graphic-crop.png" class="pubimg borderimg" alt="image depicting PSD method">
+		</a>
+	      </div>
+
+	      <div class="info" id="psd">
+		<ptitle2>Predictive-State Decoders: Encoding the Future Into Recurrent Neural Networks</ptitle2>
+		<p class="author">A. Venkataraman*, <strong>N. Rhinehart*</strong>, W. Sun, L. Pinto, M. Hebert, B. Boots, K. Kitani, J. A. Bagnell<br></p>
+		<a href="https://papers.nips.cc/paper/6717-predictive-state-decoders-encoding-the-future-into-recurrent-networks" class="txtlink pub">NIPS 2017</a>&nbsp;&bull;
+		<a  href="papers/PSDNIPS2017.pdf" class="txtlink" >pdf</a>
+		<!-- <a href="javascript:toggleInfo('Venkatraman17','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+		<!-- <a href="javascript:toggleInfo('Venkatraman17','bib')" class="txtlink" >show bib</a> -->
+		<br><br>
+		<p>We use the idea of Predictive State Representations to guide learning of RNNs: by encouraging the hidden-state of the RNN to be predictive of future observations, we found it to improve RNN performance on various tasks in probabilistic filtering, imitation learning, and reinforcement learning.</p>
+	      </div>
+	    </pubcore>
+
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Venkatraman17" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Venkatraman17">Recurrent neural networks (RNNs) are a vital modeling technique that rely on internal states learned indirectly by optimization of a supervised, unsupervised, or reinforcement training loss. RNNs are used to model dynamic processes that are characterized by underlying latent states whose form is often unknown, precluding its analytic representation inside an RNN. In the Predictive-State Representation (PSR) literature, latent state processes are modeled by an internal state representation that directly models the distribution of future observations, and most recent work in this area has relied on explicitly representing and targeting sufficient statistics of this probability distribution. We seek to combine the advantages of RNNs and PSRs by augmenting existing state-of-the-art recurrent neural networks with Predictive-State Decoders (PSDs), which add supervision to the network's internal state representation to target predicting future observations. PSDs are simple to implement and easily incorporated into existing training pipelines via additional loss regularization. We demonstrate the effectiveness of PSDs with experimental results in three different domains:  probabilistic filtering, Imitation Learning, and Reinforcement Learning. In each, our method improves statistical performance of state-of-the-art recurrent baselines and does so with fewer iterations and less data.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Venkatraman17" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Venkatraman17">@inproceedings{venkatraman2017predictive, -->
+<!--   title={Predictive-state decoders: Encoding the future into recurrent networks}, -->
+<!--   author={Venkatraman, Arun and Rhinehart, Nicholas and Sun, Wen and Pinto, Lerrel and Hebert, Martial and Boots, Byron and Kitani, Kris and Bagnell, J}, -->
+<!--   booktitle={Advances in Neural Information Processing Systems}, -->
+<!--   pages={1172--1183}, -->
+<!--   year={2017} -->
+<!-- } -->
+<!-- 		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="forecasting fpv repr" id="darkopub">
+	    <pubcore>
+	      <div class="aside">
+		<!-- <div class="teaser"> -->
+		<a href="papers/darko_iccv17.pdf">
+		  <video controls autoplay loop class="pubimg borderimg">
+		    <source src="videos/darko_teaser.mov" type="video/mp4">
+		  </video>
+		</a>
+	      </div>
+	      <div class="info" id="fpf" style="margin-bottom:10px; float: center;">
+		<ptitle2>First-Person Activity Forecasting with Online Inverse Reinforcement Learning</ptitle2>
+		<p class="author"><strong>N. Rhinehart</strong>, K. Kitani<br></p>
+		<important>Best Paper Honorable Mention, ICCV 2017 (3 of 2,143 submissions)</important><br>
+		<!-- <div style="height:10px"></div> -->
+		<a href="https://ieeexplore.ieee.org/document/8237661" class="txtlink pub">ICCV 2017</a>&nbsp;&bull;
+		<a  href="papers/darko_iccv17.pdf" class="txtlink" id="darkoiccvpdf">pdf</a>&nbsp;&bull; 
+		<!-- <a href="javascript:toggleInfo('Rhinehart17','abstract')" class="txtlink" >show abs</a>&nbsp;&bull;  -->
+		<!-- <a href="javascript:toggleInfo('Rhinehart17','bib')" class="txtlink" >show bib</a>&nbsp;&bull;  -->
+		<!-- <a href="darko.html" class="txtlink" >project page</a>&nbsp;&bull;  -->
+		<!-- <a href="http://arxiv.org/abs/1612.07796" class="txtlink"  >arxiv</a>&nbsp;&bull;  -->
+		<!-- <a href="https://www.youtube.com/watch?v=fLHjoYemCAs" class="txtlink"  >recorded talk</a>&nbsp;&bull; -->
+		<a href="code/pymaxent_ioc.zip" class="txtlink"  >code</a>
+		<!-- <a class="txtlink" href="mailto:nrhineha@cs.cmu.edu?subject=DARKO paper request&body=Hi Nick,%0D%0DPlease send the TPAMI version of your paper. Thanks!%0D">get TPAMI pdf (email)</a>&nbsp;&bull; -->
+		<br><br>
+		<p>We continuously model and forecast long-term goals of a first-person camera wearer through our Online Inverse RL algorithm. In contrast to motion forecasting, our approach reasons about semantic states and future goals that are potentially far away in space and time.</p>
+	      </div>
+	    </pubcore>
+
+	    <!-- abstract data -->
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart17" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart17">We address the problem of incrementally modeling and forecasting long-term goals of a first-person camera wearer: what the user will do, where they will go, and what goal they are attempting to reach. In contrast to prior work in trajectory forecasting, our algorithm, DARKO, goes further to reason about semantic states (will I pick up an object?), and future goal states that are far both in terms of space and time. DARKO learns and forecasts from first-person visual observations of the user's daily behaviors via an Online Inverse Reinforcement Learning (IRL) approach. Classical IRL discovers only the rewards in a batch setting, whereas DARKO discovers the states, transitions, rewards, and goals of a user from streaming data. Among other results, we show DARKO forecasts goals better than competing methods in both noisy and ideal settings, and our approach is theoretically and empirically no-regret. </p> -->
+<!-- 	      </div> -->
+<!-- 	      <\!-- bib data -\-> -->
+<!-- 	      <div id="bib_Rhinehart17" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre id="pre_Rhinehart17">@InProceedings{Rhinehart_2017_ICCV, -->
+<!-- author = {Rhinehart, Nicholas and Kitani, Kris M.}, -->
+<!-- title = {First-Person Activity Forecasting With Online Inverse Reinforcement Learning}, -->
+<!-- booktitle = {The IEEE International Conference on Computer Vision (ICCV)}, -->
+<!-- month = {Oct}, -->
+<!-- year = {2017} -->
+<!-- } -->
+<!-- 		</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <publication class="forecasting fpv">
+	    <pubcore>
+	      <div class="aside">
+		<a href="http://arxiv.org/abs/1605.01679" >
+		  <img src="img/am_teaser_ss.png" class="pubimg borderimg" alt="depiction of action map method result"> 
+		</a>
+	      </div>
+	      <!-- <br> -->
+	      <div class="info" id="amaps"><ptitle2>Learning Action Maps of Large Environments Via First-Person Vision</ptitle2>
+		<p class="author"><strong>N. Rhinehart</strong>, K. Kitani<p>
+		  <a href="http://ieeexplore.ieee.org/document/7780438/" class="txtlink pub"  >CVPR 2016</a>&nbsp;&bull;
+		  <a  href="papers/ActionMapsCVPR2016.pdf" class="txtlink" id="actionmapspdf">pdf</a>
+		  <!-- <a href="javascript:toggleInfo('Rhinehart16','abstract')" class="txtlink" >show abs</a>&nbsp;&bull;  -->
+		  <!-- <a href="javascript:toggleInfo('Rhinehart16','bib')" class="txtlink" >show bib</a> -->
+
+		  <br><br>
+		<p>We developed an approach that learns to associate visual cues associated with sparse behaviors to make dense predictions of functionality in seen and unseen environments.</p>
+	      </div>
+	    </pubcore>
+
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart16" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart16">When people observe and interact with physical spaces, they are able to associate functionality to regions in the environment. Our goal is to automate dense functional understanding of large spaces by leveraging sparse activity demonstrations recorded from an ego-centric viewpoint. The method we describe enables functionality estimation in large scenes where people have behaved, as well as novel scenes where no behaviors are observed. Our method learns and predicts "Action Maps", which encode the ability for a user to perform activities at various locations. With the usage of an egocentric camera to observe human activities, our method scales with the size of the scene without the need for mounting multiple static surveillance cameras and is well-suited to the task of observing activities up-close. We demonstrate that by capturing appearance-based attributes of the environment and associating these attributes with activity demonstrations, our proposed mathematical frame- work allows for the prediction of Action Maps in new environments. Additionally, we offer a preliminary glance of the applicability of Action Maps by demonstrating a proof-of-concept application in which they are used in concert with activity detections to perform localization.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <div id="bib_Rhinehart16" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre>@InProceedings{Rhinehart2016CVPR, -->
+<!--  author = {Rhinehart, Nicholas and Kitani, Kris M.}, -->
+<!--  title = {Learning Action Maps of Large Environments via First-Person Vision}, -->
+<!--  booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)}, -->
+<!--  month = {June}, -->
+<!--  year = {2016} -->
+<!-- } </pre>		   -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+
+	  <!-- </div> -->
+	  <publication class="il">
+	    <pubcore>
+	      <div class="aside">
+		<!-- <div class="teaser"> -->
+		<a href="http://arxiv.org/abs/1410.7376">
+		  <img src="img/vc_icra15_ss_compressed.jpg" class="pubimg borderimg" alt="depiction of Rhinehart15 method output">
+		</a>
+	      </div>
+
+	      <div class="info" id="chunking">
+		<ptitle2>Visual Chunking: A List Prediction Framework for Region-Based Object Detection</ptitle2><br>
+		<p class="author"><strong>N. Rhinehart</strong>, J. Zhou, M. Hebert, J. A. Bagnell</p>
+		<!-- <p>We designed an imitation learning approach for the task of sequential region-based object detection, whereas many other approaches resort to ad hoc procedures (e.g. NMS) for filtering independent detections. We present an efficient algorithm with provable performance for building a high-quality list of detections from any candidate set of region-based proposals. We also develop a simple class-specific algorithm to generate a candidate region instance in near-linear time in the number of low-level superpixels that outperforms other region generating methods. We demonstrate that our new approach outperforms sophisticated baselines on benchmark datasets. </p> -->
+		<!-- <div style="height:10px"></div> -->
+		<a href="https://ieeexplore.ieee.org/document/7139960" class="txtlink pub">ICRA 2015</a>&nbsp;&bull;
+		<a  href="papers/VisualChunkingICRA2015.pdf" class="txtlink" id="vchunkingpdf">pdf</a>
+		<!-- <a  href="javascript:toggleInfo('Rhinehart15','abstract');" class="txtlink" >show abs</a>&nbsp;&bull;  -->
+		<!-- <a  href="javascript:toggleInfo('Rhinehart15','bib');" class="txtlink" >show bib</a> -->
+		<!-- <a  href="http://youtu.be/lbFR6T1S41g" class="txtlink" >youtube</a> -->
+		<br><br>
+		<p>We developed a principled imitation learning approach for the task of object detection, which is best described as a sequence prediction problem. Our approach reasons sequentially about objects, and requires no heuristics, such as Non-Maxima Suppression, to filter its predictions that are common in object detection frameworks.</p>
+	      </div>
+	    </pubcore>
+
+<!-- 	    <pubaux> -->
+<!-- 	      <div id="abs_Rhinehart15" class="abstract noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<p id="abstract_Rhinehart15">We consider detecting objects in an image by iteratively selecting from a set of arbitrarily shaped candidate regions. Our generic approach, which we term visual chunking, reasons about the locations of multiple object instances in an image while expressively describing object boundaries. We design an optimization criterion for measuring the performance of a list of such detections as a natural extension to a common per-instance metric. We present an efficient algorithm with provable performance for building a high-quality list of detections from any candidate set of region-based proposals. We also develop a simple class-specific algorithm to generate a candidate region instance in near-linear time in the number of low-level superpixels that outperforms other region generating methods. In order to make predictions on novel images at testing time without access to ground truth, we develop learning approaches to emulate these algorithms' behaviors. We demonstrate that our new approach outperforms sophisticated baselines on benchmark datasets.</p> -->
+<!-- 	      </div> -->
+<!-- 	      <div id="bib_Rhinehart15" class="bib noshow"> -->
+<!-- 		<hr class="half"> -->
+<!-- 		<pre> -->
+<!-- @inproceedings{rhinehart2015visual, -->
+<!--  title={Visual chunking: A list prediction framework for region-based object detection}, -->
+<!--  author={Rhinehart, Nicholas and Zhou, Jiaji and Hebert, Martial and Bagnell, J Andrew}, -->
+<!--  booktitle={Robotics and Automation (ICRA), 2015 IEEE International Conference on}, -->
+<!--  pages={5448--5454}, -->
+<!--  year={2015}, -->
+<!--  organization={IEEE} -->
+<!-- }</pre> -->
+<!-- 	      </div> -->
+<!-- 	    </pubaux> -->
+	  </publication>
+	</section>
+
+	<!-- Copyright. Just in case...? -->
+	<section>&copy; 2015-2021 Nick Rhinehart</section>
+      </main>
+  </body>
+
+  <!-- New publication Template -->
+  <!-- <publication class="TOPIC0 TOPIC1 TOPIC2"> -->
+  <!--   <pubcore> -->
+  <!--     <div class="aside"> -->
+  <!-- 	<\!-- Image link destination -\-> -->
+  <!-- 	<a href="LINK_TO_SOMEWHERE"> -->
+  <!-- 	  <\!-- Image file location -\-> -->
+  <!-- 	  <img src="img/IMAGE_PATH" class="pubimg borderimg"> -->
+  <!-- 	</a> -->
+  <!--     </div> -->
+  <!--     <div class="info" id="LASTNAMEYEAR"> -->
+  <!-- 	<\!-- Title -\-> -->
+  <!-- 	<ptitle2>TITLE</ptitle2> -->
+  <!-- 	<\!-- Author list -\-> -->
+  <!-- 	<p class="author">AUTHOR LIST<p> -->
+  <!-- 	  <a href="LINK_TO_VENUE" class="txtlink pub">ICLR 2021</a>&nbsp;&bull; -->
+  <!-- 	  <a href="LINK_TO_PDF" class="txtlink">pdf</a>&nbsp;&bull; -->
+  <!-- 	  <a href="javascript:toggleInfo('LASTNAMEYEAR','abstract')" class="txtlink" >show abs</a>&nbsp;&bull; -->
+  <!-- 	  <a href="javascript:toggleInfo('LASTNAMEYEAR','bib')" class="txtlink" >show bib</a>&nbsp;&bull; -->
+  <!-- 	  <\!-- Any other links-\-> -->
+  <!-- 	  <br><br> -->
+  <!-- 	<p>BRIEF DESCRIPTION</p> -->
+  <!--     </div> -->
+  <!--   </pubcore> -->
+  
+  <!--   <\!-- abstract data -\-> -->
+  <!--   <pubaux> -->
+	      <!-- <noscript style="font-size:10px;"> -->
+	      <!-- 	<hr class="half">		 -->
+	      <!-- 	<hr class="half">		 -->
+	      <!-- 	<pre></pre> -->
+	      <!-- </noscript> -->  
+  <!--     <div id="abs_LASTNAMEYEAR" class="abstract noshow"> -->
+  <!-- 	<hr class="half"> -->
+  <!-- 	<p id="abstract_LASTNAMEYEAR"></p> -->
+  <!-- 	<script type="text/javascript">$('#abstract_LASTNAMEYEAR').load("abs/abs_LASTNAMEYEAR.txt");</script> -->
+  <!--     </div> -->
+  
+  <!--     <\!-- bib data -\-> -->
+  <!--     <div id="bib_LASTNAMEYEAR" class="bib noshow"> -->
+  <!-- 	<hr class="half"> -->
+  <!-- 	<pre id="pre_LASTNAMEYEAR"> -->
+  <!-- 	</pre> -->
+  <!-- 	<script type="text/javascript">$('#pre_LASTNAMEYEAR').load("bib/bib_LASTNAMEYEAR.txt");</script> -->
+  <!--     </div> -->
+  <!--   </pubaux> -->
+  <!-- </publication> -->
+</html>

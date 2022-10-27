@@ -1,0 +1,8 @@
+@misc{singh2020parrot,
+      title={Parrot: Data-Driven Behavioral Priors for Reinforcement Learning}, 
+      author={Avi Singh and Huihan Liu and Gaoyue Zhou and Albert Yu and Nicholas Rhinehart and Sergey Levine},
+      year={2020},
+      eprint={2011.10024},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG}
+}

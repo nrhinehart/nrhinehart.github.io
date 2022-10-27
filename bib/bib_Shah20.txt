@@ -1,0 +1,8 @@
+@misc{shah2020ving,
+      title={ViNG: Learning Open-World Navigation with Visual Goals}, 
+      author={Dhruv Shah and Benjamin Eysenbach and Gregory Kahn and Nicholas Rhinehart and Sergey Levine},
+      year={2020},
+      eprint={2012.09812},
+      archivePrefix={arXiv},
+      primaryClass={cs.RO}
+}

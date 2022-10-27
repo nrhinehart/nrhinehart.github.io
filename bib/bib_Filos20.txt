@@ -1,0 +1,6 @@
+@article{filos2020can,
+  title={Can autonomous vehicles identify, recover from, and adapt to distribution shifts?},
+  author={Filos, Angelos and Tigas, Panagiotis and McAllister, Rowan and Rhinehart, Nicholas and Levine, Sergey and Gal, Yarin},
+  journal={arXiv preprint arXiv:2006.14911},
+  year={2020}
+}

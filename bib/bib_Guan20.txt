@@ -1,7 +1,0 @@
-@InProceedings{Guan_2020_CVPR,
-author = {Guan, Jiaqi and Yuan, Ye and Kitani, Kris M. and Rhinehart, Nicholas},
-title = {Generative Hybrid Representations for Activity Forecasting With No-Regret Learning},
-booktitle = {The IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-month = {June},
-year = {2020}
-}

@@ -1,8 +1,0 @@
-@inproceedings{
-sharma2018directedinfo,
-title={Directed-Info {GAIL}: Learning Hierarchical Policies from Unsegmented Demonstrations using Directed Information},
-author={Mohit Sharma and Arjun Sharma and Nicholas Rhinehart and Kris M. Kitani},
-booktitle={International Conference on Learning Representations},
-year={2019},
-url={https://openreview.net/forum?id=BJeWUs05KQ},
-}

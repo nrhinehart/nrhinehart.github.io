@@ -1,7 +1,0 @@
-@inproceedings{
-        pan2018hi,
-        title={Human-Interactive Subgoal Supervision for Efficient Inverse Reinforcement Learning},
-        author={Xinlei Pan and Eshed Ohn-Bar and Nicholas Rhinehart and Yan Xu and Yilin Shen and Kris. M. Kitani},
-        booktitle={International Conference on Autonomous Agents and Multiagent Systems (AAMAS)},
-        year={2018},
-        }

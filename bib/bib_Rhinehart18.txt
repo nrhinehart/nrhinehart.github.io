@@ -1,7 +1,0 @@
-@InProceedings{Rhinehart_2018_ECCV,
-author = {Rhinehart, Nicholas and Kitani, Kris M. and Vernaza, Paul},
-title = {R2P2: A ReparameteRized Pushforward Policy for Diverse, Precise Generative Path Forecasting},
-booktitle = {The European Conference on Computer Vision (ECCV)},
-month = {September},
-year = {2018}
-}

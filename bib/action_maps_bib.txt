@@ -1,7 +1,0 @@
-@InProceedings{Rhinehart2016CVPR,
-author = {Rhinehart, Nicholas and Kitani, Kris M.},
-title = {Learning Action Maps of Large Environments via First-Person Vision},
-booktitle = {The IEEE Conference on Computer Vision and Pattern Recognition (CVPR)},
-month = {June},
-year = {2016}
-}

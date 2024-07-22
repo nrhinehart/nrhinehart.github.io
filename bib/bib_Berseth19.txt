@@ -1,8 +1,0 @@
-@misc{berseth2019smirl,
-    title={SMiRL: Surprise Minimizing RL in Dynamic Environments},
-    author={Glen Berseth and Daniel Geng and Coline Devin and Nicholas Rhinehart and Chelsea Finn and Dinesh Jayaraman and Sergey Levine},
-    year={2019},
-    eprint={1912.05510},
-    archivePrefix={arXiv},
-    primaryClass={cs.LG}
-}

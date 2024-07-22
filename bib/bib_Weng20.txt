@@ -1,8 +1,0 @@
-@misc{weng2020inverting,
-      title={Inverting the Pose Forecasting Pipeline with SPF2: Sequential Pointcloud Forecasting for Sequential Pose Forecasting}, 
-      author={Xinshuo Weng and Jianren Wang and Sergey Levine and Kris Kitani and Nicholas Rhinehart},
-      year={2020},
-      eprint={2003.08376},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}

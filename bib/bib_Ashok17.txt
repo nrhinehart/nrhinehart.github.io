@@ -1,8 +1,0 @@
-@inproceedings{
-        ashok2018nn,
-        title={N2N learning: Network to Network Compression via Policy Gradient Reinforcement Learning},
-        author={Anubhav Ashok and Nicholas Rhinehart and Fares Beainy and Kris M. Kitani},
-        booktitle={International Conference on Learning Representations},
-        year={2018},
-        url={https://openreview.net/forum?id=B1hcZZ-AW},
-        }
